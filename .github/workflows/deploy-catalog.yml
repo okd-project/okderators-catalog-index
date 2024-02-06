@@ -1,0 +1,45 @@
+name: Deploy Production Catalog
+
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment: Production Deploy
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Prepare image tags and labels
+        id: image-meta-gen
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            quay.io/okderators/catalog-index
+          tags: |
+            type=raw,value=latest
+      - name: Build Catalog Image
+        id: build-catalog-image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          tags: ${{ steps.image-meta-gen.outputs.tags }}
+          labels: ${{ steps.image-meta-gen.outputs.tags }}
+          containerfiles: |
+            ./catalog.Containerfile
+      - name: Login to quay.io
+        uses: redhat-actions/podman-login@v1
+        with:
+          username: ${{ secrets.QUAY_UN }}
+          password: ${{ secrets.QUAY_PW }}
+          registry: quay.io
+      - name: Push Catalog Image
+        id: push-to-quay
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build-catalog-image.outputs.image }}
+          tags: ${{ steps.build-catalog-image.outputs.tags }}
+      - name: Report Catalog Image URL
+        run: echo "Image pushed to ${{ steps.push-to-quay.outputs.registry-paths }}"
