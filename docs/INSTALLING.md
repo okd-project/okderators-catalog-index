@@ -11,6 +11,6 @@ Installing OKDerator Catalog
 # Quick Start
 `oc apply -f https://raw.githubusercontent.com/okd-project/okderators-catalog-index/main/install/okderators.catalogsource.yml`
 
-Must be authenticated as a `cluster-admin`, if succeful the command will return
+Must be authenticated as a `cluster-admin`, if successful the command will return
 
 `catalogsource.operators.coreos.com/okderators created`
