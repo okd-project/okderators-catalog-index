@@ -1,0 +1,13 @@
+---
+schema: olm.package
+name: local-storage-operator
+defaultChannel: alpha
+icon:
+  base64data:
+  type: image/png
+---
+schema: olm.channel
+package: local-storage-operator
+name: alpha
+entries:
+  - name: local-storage-operator.v4.15.0-2024-04-16-164915
