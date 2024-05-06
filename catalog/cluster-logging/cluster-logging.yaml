@@ -1,0 +1,13 @@
+---
+schema: olm.package
+name: cluster-logging
+defaultChannel: alpha
+icon:
+  base64data:
+  type: image/png
+---
+schema: olm.channel
+package: cluster-logging
+name: alpha
+entries:
+  - name: clusterlogging.v5.9.0-2024-05-05-192913

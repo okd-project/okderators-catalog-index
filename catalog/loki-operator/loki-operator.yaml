@@ -1,0 +1,13 @@
+---
+schema: olm.package
+name: loki-operator
+defaultChannel: alpha
+icon:
+  base64data:
+  type: image/png
+---
+schema: olm.channel
+package: loki-operator
+name: alpha
+entries:
+  - name: loki-operator.v5.9.0-2024-05-06-220335
