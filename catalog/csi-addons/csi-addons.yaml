@@ -1,0 +1,13 @@
+---
+schema: olm.package
+name: csi-addons
+defaultChannel: alpha
+icon:
+  base64data:
+  type: image/png
+---
+schema: olm.channel
+package: csi-addons
+name: alpha
+entries:
+  - name: csi-addons.v4.15.0-2024-05-27-184620
