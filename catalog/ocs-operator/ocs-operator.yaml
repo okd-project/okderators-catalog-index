@@ -10,4 +10,4 @@ schema: olm.channel
 package: ocs-operator
 name: alpha
 entries:
-  - name: ocs-operator.v4.15.0-2024-05-27-162032
+  - name: ocs-operator.v4.15.0-2024-05-30-201614
