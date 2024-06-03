@@ -11,3 +11,5 @@ package: ocs-operator
 name: alpha
 entries:
   - name: ocs-operator.v4.15.0-2024-05-30-201614
+  - name: ocs-operator.v4.15.0-2024-05-31-160556
+    replaces: ocs-operator.v4.15.0-2024-05-30-201614
