@@ -1,0 +1,195 @@
+---
+image: quay.io/okderators/odf-operator-bundle:4.15.0-2024-07-04-202604
+name: odf-operator.v4.15.0-2024-07-04-202604
+package: odf-operator
+properties:
+- type: olm.gvk
+  value:
+    group: odf.openshift.io
+    kind: StorageSystem
+    version: v1alpha1
+- type: olm.maxOpenShiftVersion
+  value: "4.16"
+- type: olm.package
+  value:
+    packageName: odf-operator
+    version: 4.15.0-2024-07-04-202604
+- type: olm.package.required
+  value:
+    packageName: csi-addons
+    versionRange: 4.15.0-2024-07-04-202604
+- type: olm.package.required
+  value:
+    packageName: noobaa-operator
+    versionRange: 4.15.0-2024-07-04-202604
+- type: olm.package.required
+  value:
+    packageName: ocs-operator
+    versionRange: '>=4.14.0 <4.15.0 || 4.15.0'
+- type: olm.csv.metadata
+  value:
+    annotations:
+      alm-examples: |-
+        [
+          {
+            "apiVersion": "odf.openshift.io/v1alpha1",
+            "kind": "StorageSystem",
+            "metadata": {
+              "name": "my-flashsystemcluster-storagesystem",
+              "namespace": "openshift-storage"
+            },
+            "spec": {
+              "kind": "flashsystemcluster.odf.ibm.com/v1alpha1",
+              "name": "my-flashsystemcluster",
+              "namespace": "openshift-storage"
+            }
+          },
+          {
+            "apiVersion": "odf.openshift.io/v1alpha1",
+            "kind": "StorageSystem",
+            "metadata": {
+              "name": "my-storagecluster-storagesystem",
+              "namespace": "openshift-storage"
+            },
+            "spec": {
+              "kind": "storagecluster.ocs.openshift.io/v1",
+              "name": "my-storagecluster",
+              "namespace": "openshift-storage"
+            }
+          }
+        ]
+      capabilities: Deep Insights
+      categories: Storage
+      console.openshift.io/plugins: '["odf-console"]'
+      containerImage: quay.io/ocs-dev/odf-operator:latest
+      createdAt: "2024-07-04T20:46:14Z"
+      description: OKD Data Foundation provides a common control plane for storage
+        solutions on OKD Container Platform.
+      features.operators.openshift.io/token-auth-aws: "true"
+      olm.properties: '[{"type": "olm.maxOpenShiftVersion", "value": "4.16"}]'
+      olm.skipRange: ""
+      operatorframework.io/initialization-resource: |-
+        {
+          "apiVersion": "odf.openshift.io/v1alpha1",
+          "kind": "StorageSystem",
+          "metadata": {
+            "name": "ocs-storagecluster-storagesystem",
+            "namespace": "openshift-storage"
+          },
+          "spec": {
+            "kind": "storagecluster.ocs.openshift.io/v1",
+            "name": "ocs-storagecluster",
+            "namespace": "openshift-storage"
+          }
+        }
+      operatorframework.io/suggested-namespace: openshift-storage
+      operators.openshift.io/infrastructure-features: '["disconnected"]'
+      operators.operatorframework.io/builder: operator-sdk-v1.30.0
+      operators.operatorframework.io/operator-type: standalone
+      operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
+      repository: https://github.com/red-hat-storage/odf-operator
+      support: OKD Community
+      vendors.odf.openshift.io/kind: '["storagecluster.ocs.openshift.io/v1", "flashsystemcluster.odf.ibm.com/v1alpha1"]'
+    apiServiceDefinitions: {}
+    crdDescriptions:
+      owned:
+      - description: StorageSystem is the Schema for the storagesystems API
+        displayName: Storage System
+        kind: StorageSystem
+        name: storagesystems.odf.openshift.io
+        resources:
+        - kind: FlashSystemCluster
+          name: flashsystemclusters.odf.ibm.com
+          version: v1alpha1
+        - kind: StorageCluster
+          name: storageclusters.ocs.openshift.io
+          version: v1
+        version: v1alpha1
+    description: |
+      **OKD Data Foundation** deploys three operators.
+
+      ### OKD Data Foundation
+      The OKD Data Foundation operator is the primary operator for
+      OKD Data Foundation. It serves to facilitate the other operators in
+      OKD Data Foundation by performing administrative tasks outside their
+      scope as well as watching and configuring their CustomResources.
+
+      ### Rook
+      [Rook][1] deploys and manages Ceph on OKD, which provides block,
+      file and object storage.
+
+      ### NooBaa operator
+      The NooBaa operator deploys and manages the [NooBaa][2] Multi-Cloud Gateway
+      on OKD, which provides object storage.
+
+      # Core Capabilities
+      * **Self-managing service:** No matter which supported storage technologies
+      you choose, OKD Data Foundation ensures that resources can be
+      deployed and managed automatically.
+
+      * **Hyper-scale or hyper-converged:** With OKD Data Foundation you
+      can either build dedicated storage clusters or hyper-converged clusters
+      where your apps run alongside storage.
+
+      * **File, Block, and Object provided by OKD Data Foundation:**
+      OKD Data Foundation integrates Ceph with multiple storage
+      presentations including object storage (compatible with S3), block storage,
+      and POSIX-compliant shared file system.
+
+      * **Your data, protected:** OKD Data Foundation efficiently
+      distributes and replicates your data across your cluster to minimize the
+      risk of data loss. With snapshots, cloning, and versioning, no more losing
+      sleep over your data.
+
+      * **Elastic storage in your datacenter:** Scale is now possible in your
+      datacenter. Get started with a few terabytes, and easily scale up.
+
+      * **Simplified data management:** Easily create hybrid and multi-cloud data
+      storage for your workloads, using a single namespace.
+
+      # Subscriptions
+      OKD Data Foundation requires a matching 1:1 ratio with the OKD
+      subscription used. The Essential subscription is included in the OKD
+      Platform Plus subscription. Disaster Recovery features, external mode, and
+      KMS integration for encryption at rest require a bundle of OKD
+      Platform Plus with OKD Data Foundation Advanced subscription.
+
+      [1]: https://rook.io
+      [2]: https://www.noobaa.io
+    displayName: OKD Data Foundation
+    installModes:
+    - supported: true
+      type: OwnNamespace
+    - supported: true
+      type: SingleNamespace
+    - supported: false
+      type: MultiNamespace
+    - supported: false
+      type: AllNamespaces
+    keywords:
+    - operator
+    - data
+    - storage
+    labels:
+      operatorframework.io/arch.amd64: supported
+      operatorframework.io/arch.ppc64le: supported
+      operatorframework.io/arch.s390x: supported
+    links:
+    - name: Source Code
+      url: https://github.com/red-hat-storage/odf-operator
+    maintainers:
+    - email: ocs-support@redhat.com
+      name: Red Hat Support
+    maturity: alpha
+    provider:
+      name: OKD Community
+relatedImages:
+- image: quay.io/okderators/kube-rbac-proxy:4.15
+  name: ""
+- image: quay.io/okderators/odf-console:4.15.0-2024-07-04-202604
+  name: ""
+- image: quay.io/okderators/odf-operator-bundle:4.15.0-2024-07-04-202604
+  name: ""
+- image: quay.io/okderators/odf-operator:4.15.0-2024-07-04-202604
+  name: ""
+schema: olm.bundle
