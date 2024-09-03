@@ -1,0 +1,589 @@
+---
+image: quay.io/okderators/metallb-operator-bundle:4.16.0-2024-08-09-235134
+name: metallb-operator.v4.16.0-2024-08-09-235134
+package: metallb-operator
+properties:
+- type: olm.gvk
+  value:
+    group: frrk8s.metallb.io
+    kind: FRRConfiguration
+    version: v1beta1
+- type: olm.gvk
+  value:
+    group: frrk8s.metallb.io
+    kind: FRRNodeState
+    version: v1beta1
+- type: olm.gvk
+  value:
+    group: metallb.io
+    kind: BFDProfile
+    version: v1beta1
+- type: olm.gvk
+  value:
+    group: metallb.io
+    kind: BGPAdvertisement
+    version: v1beta1
+- type: olm.gvk
+  value:
+    group: metallb.io
+    kind: BGPPeer
+    version: v1beta1
+- type: olm.gvk
+  value:
+    group: metallb.io
+    kind: BGPPeer
+    version: v1beta2
+- type: olm.gvk
+  value:
+    group: metallb.io
+    kind: Community
+    version: v1beta1
+- type: olm.gvk
+  value:
+    group: metallb.io
+    kind: IPAddressPool
+    version: v1beta1
+- type: olm.gvk
+  value:
+    group: metallb.io
+    kind: L2Advertisement
+    version: v1beta1
+- type: olm.gvk
+  value:
+    group: metallb.io
+    kind: MetalLB
+    version: v1beta1
+- type: olm.package
+  value:
+    packageName: metallb-operator
+    version: 4.16.0-2024-08-09-235134
+- type: olm.csv.metadata
+  value:
+    annotations:
+      alm-examples: |-
+        [
+          {
+            "apiVersion": "frrk8s.metallb.io/v1beta1",
+            "kind": "FRRConfiguration",
+            "metadata": {
+              "name": "basic",
+              "namespace": "frr-k8s-system"
+            },
+            "spec": {
+              "bgp": {
+                "routers": [
+                  {
+                    "asn": 64512,
+                    "neighbors": [
+                      {
+                        "address": "172.30.0.3",
+                        "asn": 64512,
+                        "port": 180,
+                        "toAdvertise": {
+                          "allowed": {
+                            "mode": "all"
+                          }
+                        },
+                        "toReceive": {
+                          "allowed": {
+                            "mode": "all"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "apiVersion": "frrk8s.metallb.io/v1beta1",
+            "kind": "FRRConfiguration",
+            "metadata": {
+              "name": "two-neighs",
+              "namespace": "frr-k8s-system"
+            },
+            "spec": {
+              "bgp": {
+                "routers": [
+                  {
+                    "asn": 64512,
+                    "neighbors": [
+                      {
+                        "address": "172.30.0.3",
+                        "asn": 4200000000,
+                        "ebgpMultiHop": true,
+                        "port": 180,
+                        "toAdvertise": {
+                          "allowed": {
+                            "mode": "all"
+                          }
+                        }
+                      },
+                      {
+                        "address": "172.18.0.6",
+                        "asn": 4200000000,
+                        "port": 179,
+                        "toAdvertise": {
+                          "allowed": {
+                            "prefixes": [
+                              "192.168.2.0/24"
+                            ]
+                          }
+                        }
+                      }
+                    ],
+                    "prefixes": [
+                      "192.168.2.0/24",
+                      "192.169.2.0/24"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "apiVersion": "frrk8s.metallb.io/v1beta1",
+            "kind": "FRRConfiguration",
+            "metadata": {
+              "name": "two-routers-vrf",
+              "namespace": "frr-k8s-system"
+            },
+            "spec": {
+              "bgp": {
+                "routers": [
+                  {
+                    "asn": 64513,
+                    "neighbors": [
+                      {
+                        "address": "172.32.0.3",
+                        "asn": 4200000000,
+                        "ebgpMultiHop": true,
+                        "port": 180,
+                        "toAdvertise": {
+                          "allowed": {
+                            "mode": "all"
+                          }
+                        }
+                      }
+                    ],
+                    "prefixes": [
+                      "192.168.2.0/24",
+                      "192.169.2.0/24"
+                    ]
+                  },
+                  {
+                    "asn": 64515,
+                    "neighbors": [
+                      {
+                        "address": "172.31.0.3",
+                        "asn": 4200000000,
+                        "port": 179,
+                        "toAdvertise": {
+                          "allowed": {
+                            "mode": "all"
+                          }
+                        }
+                      }
+                    ],
+                    "prefixes": [
+                      "192.168.2.0/24",
+                      "192.169.2.0/24"
+                    ],
+                    "vrf": "red"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "apiVersion": "frrk8s.metallb.io/v1beta1",
+            "kind": "FRRNodeState",
+            "metadata": {
+              "name": "frr-k8s-worker"
+            },
+            "status": {
+              "lastConversionResult": "success",
+              "lastReloadResult": "success",
+              "runningConfig": "Building configuration...\n\nCurrent configuration:\n!\nfrr version 9.0.2_git\nfrr defaults traditional\nhostname frr-k8s-worker\nlog file /etc/frr/frr.log informational\nlog timestamp precision 3\nno ipv6 forwarding\nservice integrated-vtysh-config\n!\nip nht resolve-via-default\n!\nipv6 nht resolve-via-default\n!\nend\n"
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "BFDProfile",
+            "metadata": {
+              "name": "bfd-profile-sample",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "receiveInterval": 380,
+              "transmitInterval": 270
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "BGPAdvertisement",
+            "metadata": {
+              "name": "bgp-adv-sample1",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "ipAddressPools": [
+                "ip-addresspool-sample1"
+              ],
+              "peers": [
+                "ebgp-single-hop0"
+              ]
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "BGPAdvertisement",
+            "metadata": {
+              "name": "bgp-adv-sample2",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "ipAddressPoolSelectors": [
+                {
+                  "matchLabels": {
+                    "test": "ipv6"
+                  }
+                },
+                {
+                  "matchLabels": {
+                    "test": "ipv4"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "BGPAdvertisement",
+            "metadata": {
+              "name": "bgp-adv-sample3",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "aggregationLength": 32,
+              "aggregationLengthV6": 128,
+              "communities": [
+                "65535:65282"
+              ],
+              "ipAddressPools": [
+                "ip-addresspool-sample1"
+              ],
+              "localPref": 50
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "BGPAdvertisement",
+            "metadata": {
+              "name": "bgp-adv-sample4",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "aggregationLength": 32,
+              "aggregationLengthV6": 128,
+              "communities": [
+                "NO_ADVERTISE"
+              ],
+              "ipAddressPools": [
+                "ip-addresspool-sample1"
+              ],
+              "localPref": 50
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "BGPAdvertisement",
+            "metadata": {
+              "name": "bgp-adv-sample5",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "aggregationLength": 32,
+              "aggregationLengthV6": 128,
+              "ipAddressPools": [
+                "ip-addresspool-sample1"
+              ],
+              "nodeSelectors": [
+                {
+                  "matchLabels": {
+                    "kubernetes.io/hostname": "kind-control-plane"
+                  }
+                },
+                {
+                  "matchLabels": {
+                    "kubernetes.io/hostname": "kind-worker"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "BGPPeer",
+            "metadata": {
+              "name": "bgp-peer-beta1",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "myASN": 64512,
+              "peerASN": 64512,
+              "peerAddress": "172.30.0.3"
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "Community",
+            "metadata": {
+              "name": "community1",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "communities": [
+                {
+                  "name": "NO_ADVERTISE",
+                  "value": "65535:65282"
+                }
+              ]
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "IPAddressPool",
+            "metadata": {
+              "name": "ip-addresspool-sample1",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "addresses": [
+                "192.168.10.0/24",
+                "192.168.9.1-192.168.9.5",
+                "fc00:f853:0ccd:e799::/124"
+              ]
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "IPAddressPool",
+            "metadata": {
+              "labels": {
+                "test": "ipv4"
+              },
+              "name": "ip-addresspool-sample2",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "addresses": [
+                "172.20.0.100/24"
+              ],
+              "autoAssign": false
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "IPAddressPool",
+            "metadata": {
+              "labels": {
+                "test": "ipv6"
+              },
+              "name": "ip-addresspool-sample3",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "addresses": [
+                "2002:2:2::1-2002:2:2::100"
+              ]
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "L2Advertisement",
+            "metadata": {
+              "name": "l2-adv-sample1",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "ipAddressPools": [
+                "ip-addresspool-sample1"
+              ]
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "L2Advertisement",
+            "metadata": {
+              "name": "l2-adv-sample2",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "nodeSelectors": [
+                {
+                  "matchLabels": {
+                    "kubernetes.io/hostname": "kind-control-plane"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta1",
+            "kind": "MetalLB",
+            "metadata": {
+              "name": "metallb",
+              "namespace": "metallb-system"
+            },
+            "spec": {}
+          },
+          {
+            "apiVersion": "metallb.io/v1beta2",
+            "kind": "BGPPeer",
+            "metadata": {
+              "name": "bgp-peer-sample1",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "myASN": 64512,
+              "peerASN": 64512,
+              "peerAddress": "172.30.0.3"
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta2",
+            "kind": "BGPPeer",
+            "metadata": {
+              "name": "bgp-peer-sample2",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "bfdProfile": "bfd-profile-sample",
+              "myASN": 64512,
+              "peerASN": 64512,
+              "peerAddress": "172.30.0.3"
+            }
+          },
+          {
+            "apiVersion": "metallb.io/v1beta2",
+            "kind": "BGPPeer",
+            "metadata": {
+              "name": "bgp-peer-sample3",
+              "namespace": "metallb-system"
+            },
+            "spec": {
+              "holdTime": "9m0s",
+              "keepaliveTime": "0s",
+              "myASN": 64512,
+              "passwordSecret": {
+                "name": "secretname",
+                "namespace": "metallb-system"
+              },
+              "peerASN": 64512,
+              "peerAddress": "172.30.0.3",
+              "peerPort": 180
+            }
+          }
+        ]
+      capabilities: Basic Install
+      categories: Networking
+      certified: "false"
+      containerImage: quay.io/okderators/metallb-operator:4.16.0-2024-08-09-235134
+      createdAt: "2023-06-06T15:25:00Z"
+      description: An operator for deploying MetalLB on a kubernetes cluster.
+      features.operators.openshift.io/disconnected: "true"
+      features.operators.openshift.io/fips-compliant: "true"
+      features.operators.openshift.io/proxy-aware: "false"
+      features.operators.openshift.io/tls-profiles: "false"
+      features.operators.openshift.io/token-auth-aws: "false"
+      features.operators.openshift.io/token-auth-azure: "false"
+      features.operators.openshift.io/token-auth-gcp: "false"
+      olm.skipRange: '>=4.8.0 <4.16.0'
+      operatorframework.io/suggested-namespace: metallb-system
+      operators.operatorframework.io/builder: operator-sdk-v1.34.1
+      operators.operatorframework.io/project_layout: go.kubebuilder.io/v4
+      repository: https://github.com/openshift/metallb-operator
+      support: OKD Community
+    apiServiceDefinitions: {}
+    crdDescriptions:
+      owned:
+      - description: BFDProfile is the Schema for the bfdprofiles API
+        kind: BFDProfile
+        name: bfdprofiles.metallb.io
+        version: v1beta1
+      - description: BGPAdvertisement is the Schema for the bgpadvertisements API
+        kind: BGPAdvertisement
+        name: bgpadvertisements.metallb.io
+        version: v1beta1
+      - description: BGPPeer is the Schema for the bgppeers API
+        kind: BGPPeer
+        name: bgppeers.metallb.io
+        version: v1beta1
+      - description: BGPPeer is the Schema for the bgppeers API
+        kind: BGPPeer
+        name: bgppeers.metallb.io
+        version: v1beta2
+      - description: Community is the Schema for the communities API
+        kind: Community
+        name: communities.metallb.io
+        version: v1beta1
+      - description: FRRConfiguration is the Schema for the frrconfigurations API
+        kind: FRRConfiguration
+        name: frrconfigurations.frrk8s.metallb.io
+        version: v1beta1
+      - description: FRRNodeState is the Schema for the frrnodestates API
+        kind: FRRNodeState
+        name: frrnodestates.frrk8s.metallb.io
+        version: v1beta1
+      - description: IPAddressPool is the Schema for the ipaddresspools API
+        kind: IPAddressPool
+        name: ipaddresspools.metallb.io
+        version: v1beta1
+      - description: L2Advertisement is the Schema for the l2advertisements API
+        kind: L2Advertisement
+        name: l2advertisements.metallb.io
+        version: v1beta1
+      - description: MetalLB is the Schema for the metallbs API
+        displayName: MetalLB
+        kind: MetalLB
+        name: metallbs.metallb.io
+        version: v1beta1
+    description: An operator for deploying MetalLB on a kubernetes cluster.
+    displayName: MetalLB Operator
+    installModes:
+    - supported: false
+      type: OwnNamespace
+    - supported: false
+      type: SingleNamespace
+    - supported: false
+      type: MultiNamespace
+    - supported: true
+      type: AllNamespaces
+    keywords:
+    - metallb-operator
+    labels:
+      operatorframework.io/arch.amd64: supported
+      operatorframework.io/arch.ppc64le: supported
+      operatorframework.io/arch.s390x: supported
+    links:
+    - name: MetalLB Operator
+      url: https://github.com/openshift/metallb-operator
+    maintainers:
+    - email: fpaoline@redhat.com
+      name: Federico Paolinelli
+    - email: obraunsh@redhat.com
+      name: Ori Braunshtein
+    maturity: alpha
+    minKubeVersion: 1.26.0
+    provider:
+      name: OKD Community
+relatedImages:
+- image: quay.io/okderators/metallb-operator-bundle:4.16.0-2024-08-09-235134
+  name: ""
+- image: quay.io/okderators/metallb-operator:4.16.0-2024-08-09-235134
+  name: ""
+- image: quay.io/okderators/metallb:4.16.0-2024-08-09-235134
+  name: ""
+schema: olm.bundle
