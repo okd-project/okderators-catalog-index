@@ -1,0 +1,10 @@
+---
+schema: olm.package
+name: cert-manager-operator
+defaultChannel: alpha
+---
+schema: olm.channel
+package: cert-manager-operator
+name: alpha
+entries:
+  - name: cert-manager-operator.v1.14.0-2024-08-09-204321
