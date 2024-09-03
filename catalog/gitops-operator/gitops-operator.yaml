@@ -2,12 +2,11 @@
 schema: olm.package
 name: gitops-operator
 defaultChannel: alpha
-icon:
-  base64data:
-  type: image/png
 ---
 schema: olm.channel
 package: gitops-operator
 name: alpha
 entries:
   - name: gitops-operator.v4.15.0-2024-04-14-112847
+  - name: gitops-operator.v1.13.0-2024-08-09-135916
+    replaces: gitops-operator.v4.15.0-2024-04-14-112847
