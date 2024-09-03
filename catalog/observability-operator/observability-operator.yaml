@@ -1,0 +1,10 @@
+---
+schema: olm.package
+name: observability-operator
+defaultChannel: alpha
+---
+schema: olm.channel
+package: observability-operator
+name: alpha
+entries:
+  - name: observability-operator.v0.3.0-2024-09-02-163052
