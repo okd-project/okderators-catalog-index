@@ -1,0 +1,10 @@
+---
+schema: olm.package
+name: netobserv-operator
+defaultChannel: alpha
+---
+schema: olm.channel
+package: netobserv-operator
+name: alpha
+entries:
+  - name: netobserv-operator.v1.6.1
