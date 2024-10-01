@@ -1,0 +1,10 @@
+---
+schema: olm.package
+name: oadp-operator
+defaultChannel: alpha
+---
+schema: olm.channel
+package: oadp-operator
+name: alpha
+entries:
+  - name: oadp-operator.v1.4.0-2024-09-04-143635
