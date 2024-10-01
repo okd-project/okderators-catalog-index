@@ -1,0 +1,291 @@
+---
+image: quay.io/okderators/sm-operator-bundle:2.6.1
+name: servicemeshoperator.v2.6.1
+package: servicemeshoperator
+properties:
+- type: olm.gvk
+  value:
+    group: maistra.io
+    kind: ServiceMeshControlPlane
+    version: v1
+- type: olm.gvk
+  value:
+    group: maistra.io
+    kind: ServiceMeshControlPlane
+    version: v2
+- type: olm.gvk
+  value:
+    group: maistra.io
+    kind: ServiceMeshMember
+    version: v1
+- type: olm.gvk
+  value:
+    group: maistra.io
+    kind: ServiceMeshMemberRoll
+    version: v1
+- type: olm.package
+  value:
+    packageName: servicemeshoperator
+    version: 2.6.1-0
+- type: olm.csv.metadata
+  value:
+    annotations:
+      alm-examples: "[\n  {\n    \"apiVersion\": \"maistra.io/v2\",\n    \"kind\":
+        \"ServiceMeshControlPlane\",\n    \"metadata\": {\n      \"name\": \"basic\",\n
+        \     \"namespace\": \"control-plane-namespace\"\n    },\n    \"spec\": {\n
+        \     \"version\": \"v2.6\",\n      \"policy\": {\n         \"type\": \"Istiod\"\n
+        \     },\n      \"telemetry\": {\n         \"type\": \"Istiod\"\n      },\n
+        \     \"addons\": {\n        \"prometheus\": {\n          \"enabled\": true\n
+        \       },\n        \"kiali\": {\n          \"enabled\": true\n        },\n
+        \       \"grafana\": {\n          \"enabled\": true\n        }\n      }\n
+        \   }\n  },\n  {\n    \"apiVersion\": \"maistra.io/v1\",\n    \"kind\": \"ServiceMeshMemberRoll\",\n
+        \   \"metadata\": {\n      \"name\": \"default\",\n      \"namespace\": \"control-plane-namespace\"\n
+        \   },\n    \"spec\": {\n      \"members\": [\n        \"your-project\",\n
+        \       \"another-of-your-projects\" \n      ]\n    }\n  },\n  {\n    \"apiVersion\":
+        \"maistra.io/v1\",\n    \"kind\": \"ServiceMeshMember\",\n    \"metadata\":
+        {\n      \"name\": \"default\",\n      \"namespace\": \"application-namespace\"\n
+        \   },\n    \"spec\": {\n      \"controlPlaneRef\": {\n        \"name\": \"basic\",\n
+        \       \"namespace\": \"control-plane-namespace\"\n      }\n    }\n  }\n]"
+      capabilities: Seamless Upgrades
+      categories: OKD Optional, Integration & Delivery
+      certified: "false"
+      containerImage: quay.io/okderators/sm-operator:2.6.1
+      createdAt: 2024-09-17T14:07:02BST
+      description: The OKD Service Mesh Operator enables you to install, configure,
+        and manage an instance of OKD Service Mesh. OKD is based on the open source
+        Istio project.
+      features.operators.openshift.io/cnf: "false"
+      features.operators.openshift.io/cni: "true"
+      features.operators.openshift.io/csi: "false"
+      features.operators.openshift.io/disconnected: "true"
+      features.operators.openshift.io/fips-compliant: "true"
+      features.operators.openshift.io/proxy-aware: "true"
+      features.operators.openshift.io/tls-profiles: "false"
+      features.operators.openshift.io/token-auth-aws: "false"
+      features.operators.openshift.io/token-auth-azure: "false"
+      features.operators.openshift.io/token-auth-gcp: "false"
+      olm.skipRange: '>=1.0.2 <2.6.1-0'
+      operators.openshift.io/infrastructure-features: '["Disconnected","fips"]'
+      repository: https://github.com/maistra/istio-operator
+      support: OKD Community
+    apiServiceDefinitions: {}
+    crdDescriptions:
+      owned:
+      - description: An Istio control plane installation
+        displayName: Istio Service Mesh Control Plane
+        kind: ServiceMeshControlPlane
+        name: servicemeshcontrolplanes.maistra.io
+        specDescriptors:
+        - description: Specify the version of the control plane you want to install
+          displayName: Control Plane Version
+          path: version
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:General
+          - urn:alm:descriptor:com.tectonic.ui:select:v2.6
+          - urn:alm:descriptor:com.tectonic.ui:select:v2.5
+          - urn:alm:descriptor:com.tectonic.ui:select:v2.4
+        - description: 'NOTE: only applies if version is v2.4 or higher'
+          displayName: Control Plane Mode
+          path: mode
+        - description: Enable mTLS for communication between control plane components
+          displayName: Control Plane Security
+          path: security.controlPlane.mtls
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:General
+          - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - description: Set to true to install Prometheus
+          displayName: Install Prometheus
+          path: addons.prometheus.enabled
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:metrics
+          - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - description: Enable mTLS for communcation between services in the mesh
+          displayName: Data Plane Security
+          path: security.dataPlane.mtls
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:General
+          - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - description: Set to true to install Kiali
+          displayName: Install Kiali
+          path: addons.kiali.enabled
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:visualization
+          - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - description: Set to true to install Grafana
+          displayName: Install Grafana
+          path: addons.grafana.enabled
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:visualization
+          - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - description: Select the provider to use for tracing
+          displayName: Tracing provider
+          path: tracing.type
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:tracing
+          - urn:alm:descriptor:com.tectonic.ui:select:None
+          - urn:alm:descriptor:com.tectonic.ui:select:Jaeger
+          - urn:alm:descriptor:com.tectonic.ui:select:Stackdriver
+        - description: Set storage type for Jaeger (applies only when Jaeger is selected
+            as the tracing provider)
+          displayName: Jaeger Storage Type
+          path: addons.jaeger.install.storage.type
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:tracing
+          - urn:alm:descriptor:com.tectonic.ui:select:Memory
+          - urn:alm:descriptor:com.tectonic.ui:select:Elasticsearch
+        - description: Select "Mixer" when deploying a control plane version less
+            than "v2.0" or when planning to install 3scale adapter
+          displayName: Type of Policy
+          path: policy.type
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:Policy
+          - urn:alm:descriptor:com.tectonic.ui:select:Istiod
+          - urn:alm:descriptor:com.tectonic.ui:select:Mixer
+        - description: Set to true to install the Istio 3Scale adapter (applies only
+            when Policy type is set to Mixer)
+          displayName: Install 3Scale Adapter
+          path: addons.3scale.enabled
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:Policy
+          - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - description: Select "Mixer" when deploying a control plane version less
+            than "v2.0"
+          displayName: Type of Telemetry
+          path: telemetry.type
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:Telemetry
+          - urn:alm:descriptor:com.tectonic.ui:select:Istiod
+          - urn:alm:descriptor:com.tectonic.ui:select:Mixer
+        - description: Set the default compute resource requests and limits for control
+            plane components
+          displayName: Default Resource Requirements
+          path: runtime.defaults.container.resources
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:resourceRequirements
+          - urn:alm:descriptor:com.tectonic.ui:advanced
+        statusDescriptors:
+        - description: Status of components deployed by this ServiceMeshControlPlane
+            resource
+          displayName: Components
+          path: readiness.components
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:podStatuses
+        version: v2
+      - description: Marks the containing namespace as a member of the referenced
+          Service Mesh
+        displayName: Istio Service Mesh Member
+        kind: ServiceMeshMember
+        name: servicemeshmembers.maistra.io
+        specDescriptors:
+        - description: The namespace of the ServiceMeshControlPlane to which this
+            namespace belongs
+          displayName: Namespace
+          path: controlPlaneRef.namespace
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:Service_Mesh_Control_Plane
+          - urn:alm:descriptor:io.kubernetes:Project
+        - description: The name of the ServiceMeshControlPlane to which this namespace
+            belongs
+          displayName: Name
+          path: controlPlaneRef.name
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:Service_Mesh_Control_Plane
+          - urn:alm:descriptor:com.tectonic.ui:text
+        version: v1
+      - description: A list of namespaces in Service Mesh
+        displayName: Istio Service Mesh Member Roll
+        kind: ServiceMeshMemberRoll
+        name: servicemeshmemberrolls.maistra.io
+        version: v1
+    description: |-
+      OKD Service Mesh is a platform that provides behavioral insight and operational control over a service mesh, providing a uniform way to connect, secure, and monitor microservice applications.
+
+      ### Overview
+
+      OKD Service Mesh (Istio), based on the open source [Istio](https://istio.io/) project, adds a transparent layer on existing
+      distributed applications without requiring any changes to the service code. You add OKD Service Mesh (Istio)
+      support to services by deploying a special sidecar proxy throughout your environment that intercepts all network
+      communication between microservices. You configure and manage the service mesh using the control plane features.
+
+      OKD Service Mesh (Istio) provides an easy way to create a network of deployed services that provides discovery,
+      load balancing, service-to-service authentication, failure recovery, metrics, and monitoring. A service mesh also
+      provides more complex operational functionality, including A/B testing, canary releases, rate limiting, access
+      control, and end-to-end authentication.
+
+      ### Core Capabilities
+
+      OKD Service Mesh (Istio) supports uniform application of a number of key capabilities across a network of services:
+
+      + **Traffic Management** - Control the flow of traffic and API calls between services, make calls more reliable,
+        and make the network more robust in the face of adverse conditions.
+
+      + **Service Identity and Security** - Provide services in the mesh with a verifiable identity and provide the
+        ability to protect service traffic as it flows over networks of varying degrees of trustworthiness.
+
+      + **Policy Enforcement** - Apply organizational policy to the interaction between services, ensure access policies
+        are enforced and resources are fairly distributed among consumers. Policy changes are made by configuring the
+        mesh, not by changing application code.
+
+      + **Telemetry** - Gain understanding of the dependencies between services and the nature and flow of traffic between
+        them, providing the ability to quickly identify issues.
+
+      ### Joining Projects Into a Mesh
+
+      Once an instance of OKD Service Mesh (Istio) has been installed, it will only exercise control over services within its own
+      project.  Other projects may be added into the mesh using one of two methods:
+
+      1. A **ServiceMeshMember** resource may be created in other projects to add those projects into the mesh.  The
+        **ServiceMeshMember** specifies a reference to the **ServiceMeshControlPlane** object that was used to install
+        the control plane.  The user creating the **ServiceMeshMember** resource must have permission to *use* the
+        **ServiceMeshControlPlane** object.  The adminstrator for the project containing the control plane can grant
+        individual users or groups the *use* permissions.
+
+      2. A **ServiceMeshMemberRoll** resource may be created in the project containing the control plane.  This resource
+        contains a single *members* list of all the projects that should belong in the mesh.  The resource must be named
+        *default*.  The user creating the resource must have *edit* or *admin* permissions for all projects in the
+        *members* list.
+
+      ### More Information
+
+      * [Documentation](https://docs.openshift.com/container-platform/latest/service_mesh/v2x/servicemesh-release-notes.html)
+      * [Bugs](https://github.com/okd-project/okderators-catalog-index/issues)
+    displayName: OKD Service Mesh (Istio)
+    installModes:
+    - supported: false
+      type: OwnNamespace
+    - supported: false
+      type: SingleNamespace
+    - supported: false
+      type: MultiNamespace
+    - supported: true
+      type: AllNamespaces
+    keywords:
+    - istio
+    - maistra
+    - servicemesh
+    labels:
+      operatorframework.io/arch.amd64: supported
+      operatorframework.io/arch.arm64: supported
+      operatorframework.io/arch.ppc64le: supported
+      operatorframework.io/arch.s390x: supported
+    links:
+    - name: OKD Service Mesh (Istio)
+      url: https://docs.openshift.com/container-platform/latest/service_mesh/v2x/servicemesh-release-notes.html
+    - name: Istio
+      url: https://istio.io/
+    - name: Operator Source Code
+      url: https://github.com/Maistra/istio-operator
+    - name: Bugs
+      url: https://github.com/okd-project/okderators-catalog-index/issues
+    maintainers:
+    - email: istio-feedback@redhat.com
+      name: OKD Community
+    maturity: alpha
+    provider:
+      name: OKD Community
+relatedImages:
+- image: quay.io/okderators/sm-operator-bundle:2.6.1
+  name: ""
+- image: quay.io/okderators/sm-operator:2.6.1
+  name: ""
+schema: olm.bundle
