@@ -1,0 +1,13 @@
+---
+schema: olm.package
+name: servicemeshoperator
+defaultChannel: alpha
+icon:
+  base64data:
+  type: image/png
+---
+schema: olm.channel
+package: servicemeshoperator
+name: alpha
+entries:
+  - name: servicemeshoperator.v2.6.1
