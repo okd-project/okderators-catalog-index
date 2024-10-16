@@ -1,0 +1,611 @@
+---
+image: quay.io/okderators/noobaa-operator-bundle:4.15.0-2024-10-16-184240
+name: noobaa-operator.v4.15.0-2024-10-16-184240
+package: noobaa-operator
+properties:
+- type: olm.gvk
+  value:
+    group: noobaa.io
+    kind: BackingStore
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: noobaa.io
+    kind: BucketClass
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: noobaa.io
+    kind: NamespaceStore
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: noobaa.io
+    kind: NooBaa
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: noobaa.io
+    kind: NooBaaAccount
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: objectbucket.io
+    kind: ObjectBucket
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: objectbucket.io
+    kind: ObjectBucketClaim
+    version: v1alpha1
+- type: olm.package
+  value:
+    packageName: noobaa-operator
+    version: 4.15.0-2024-10-16-184240
+- type: olm.csv.metadata
+  value:
+    annotations:
+      alm-examples: '[{"kind":"NooBaa","apiVersion":"noobaa.io/v1alpha1","metadata":{"name":"noobaa","creationTimestamp":null},"spec":{"cleanupPolicy":{},"security":{"kms":{}},"loadBalancerSourceSubnets":{},"autoscaler":{}},"status":{"lastKeyRotateTime":null}},{"kind":"BackingStore","apiVersion":"noobaa.io/v1alpha1","metadata":{"name":"default","creationTimestamp":null},"spec":{"type":""},"status":{"mode":{}}},{"kind":"NamespaceStore","apiVersion":"noobaa.io/v1alpha1","metadata":{"name":"default","creationTimestamp":null},"spec":{"type":""},"status":{"mode":{}}},{"kind":"BucketClass","apiVersion":"noobaa.io/v1alpha1","metadata":{"name":"default","creationTimestamp":null},"spec":{},"status":{}},{"kind":"NooBaaAccount","apiVersion":"noobaa.io/v1alpha1","metadata":{"name":"default","creationTimestamp":null},"spec":{"allow_bucket_creation":false},"status":{}}]'
+      capabilities: Basic Install
+      categories: Storage,Big Data
+      certified: "false"
+      containerImage: quay.io/okderators/noobaa-operator:4.15.0-2024-10-16-184240
+      createdAt: "2019-07-08T13:10:20.940Z"
+      description: NooBaa is an object data service for hybrid and multi cloud environments.
+      features.operators.openshift.io/token-auth-aws: "true"
+      olm.skipRange: '>=4.2.0<4.15.0-2024-10-16-184240'
+      operators.openshift.io/infrastructure-features: ֿ'["disconnected"]'
+      operators.operatorframework.io/operator-type: non-standalone
+      repository: https://github.com/noobaa/noobaa-operator
+      support: OKD Community
+    apiServiceDefinitions: {}
+    crdDescriptions:
+      owned:
+      - description: A NooBaa system - Create this to start
+        displayName: NooBaa
+        kind: NooBaa
+        name: noobaas.noobaa.io
+        resources:
+        - kind: Service
+          name: services
+          version: v1
+        - kind: Secret
+          name: secrets
+          version: v1
+        - kind: ConfigMap
+          name: configmaps
+          version: v1
+        - kind: StatefulSet
+          name: statefulsets.apps
+          version: v1
+        specDescriptors:
+        - description: DBImage (optional) overrides the default image for the db container.
+          displayName: DB Image
+          path: image
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Image (optional) overrides the default image for the server
+            container.
+          displayName: Image
+          path: dbImage
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: CoreResources (optional) overrides the default resource requirements
+            for the server container.
+          displayName: Core Resources
+          path: coreResources
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:resourceRequirements
+        - description: DBResources (optional) overrides the default resource requirements
+            for the db container.
+          displayName: DB Resources
+          path: dbResources
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:resourceRequirements
+        - description: 'DBVolumeResources (optional) overrides the default PVC resource
+            requirements for the database volume. For the time being this field is
+            immutable and can only be set on system creation. This is because volume
+            size updates are only supported for increasing the size, and only if the
+            storage class specifies `allowVolumeExpansion: true`, +immutable.'
+          displayName: Image
+          path: dbVolumeResources
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:resourceRequirements
+        - description: DBStorageClass (optional) overrides the default cluster StorageClass
+            for the database volume. For the time being this field is immutable and
+            can only be set on system creation. This affects where the system stores
+            its database which contains system config, buckets, objects meta-data
+            and mapping file parts to storage locations. +immutable.
+          displayName: DB StorageClass
+          path: dbStorageClass
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: PVPoolDefaultStorageClass (optional) overrides the default
+            cluster StorageClass for the pv-pool volumes. This affects where the system
+            stores data chunks (encrypted). Updates to this field will only affect
+            new pv-pools, but updates to existing pools are not supported by the operator.
+          displayName: PV Pool DefaultStorageClass
+          path: pvPoolDefaultStorageClass
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: ImagePullSecret (optional) sets a pull secret for the system
+            image.
+          displayName: Image Pull Secret
+          path: imagePullSecret
+          x-descriptors:
+          - urn:alm:descriptor:io.kubernetes:Secret
+        version: v1alpha1
+      - description: Storage target spec such as aws-s3, s3-compatible, ibm-cos, PV's
+          and more. Used in BucketClass to construct data placement policies.
+        displayName: Backing Store
+        kind: BackingStore
+        name: backingstores.noobaa.io
+        resources:
+        - kind: Service
+          name: services
+          version: v1
+        - kind: Secret
+          name: secrets
+          version: v1
+        - kind: ConfigMap
+          name: configmaps
+          version: v1
+        - kind: StatefulSet
+          name: statefulsets.apps
+          version: v1
+        specDescriptors:
+        - description: Region is the AWS region.
+          displayName: Region
+          path: awsS3.region
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:awsS3
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Secret refers to a secret that provides the credentials. The
+            secret should define AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.
+          displayName: Secret
+          path: awsS3.secret.name
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:awsS3
+          - urn:alm:descriptor:io.kubernetes:Secret
+        - description: SSLDisabled allows to disable SSL and use plain http.
+          displayName: SSL Disabled
+          path: awsS3.sslDisabled
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:awsS3
+          - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - description: TargetBucket is the name of the target S3 bucket.
+          displayName: Target Bucket
+          path: awsS3.targetBucket
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:awsS3
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: |2-
+             Secret refers to a secret that provides the credentials. The secret should define AccountName and AccountKey as provided
+            by Azure Blob.
+          displayName: Secret
+          path: azureBlob.secret.name
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:azureBlob
+          - urn:alm:descriptor:io.kubernetes:Secret
+        - description: TargetBlobContainer is the name of the target Azure Blob container.
+          displayName: Target Blob Container
+          path: azureBlob.targetBlobContainer
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:azureBlob
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: |-
+            Secret refers to a secret that provides the credentials. The secret should define GoogleServiceAccountPrivateKeyJson containing
+            the entire json string as provided by Google.
+          displayName: Secret
+          path: googleCloudStorage.secret.name
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:googleCloudStorage
+          - urn:alm:descriptor:io.kubernetes:Secret
+        - description: TargetBucket is the name of the target S3 bucket.
+          displayName: Target Bucket
+          path: googleCloudStorage.targetBucket
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:googleCloudStorage
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: NumVolumes is the number of volumes to allocate.
+          displayName: Num Volumes
+          path: pvPool.numVolumes
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:pvPool
+          - urn:alm:descriptor:com.tectonic.ui:number
+        - description: VolumeResources represents the minimum resources each volume
+            should have.
+          displayName: Resources
+          path: pvPool.resources
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:pvPool
+          - urn:alm:descriptor:com.tectonic.ui:resourceRequirements
+        - description: StorageClass is the name of the storage class to use for the
+            PV's.
+          displayName: Storage Class
+          path: pvPool.storageClass
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:pvPool
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: 'Endpoint is the S3 compatible endpoint: http(s)://host:port.'
+          displayName: End Point
+          path: s3Compatible.endpoint
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:s3Compatible
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Secret refers to a secret that provides the credentials. The
+            secret should define AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.
+          displayName: Secret
+          path: s3Compatible.secret.name
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:s3Compatible
+          - urn:alm:descriptor:io.kubernetes:Secret
+        - description: SignatureVersion specifies the client signature version to
+            use when signing requests.
+          displayName: Signature Version
+          path: s3Compatible.signatureVersion
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:s3Compatible
+          - urn:alm:descriptor:com.tectonic.ui:number
+        - description: TargetBucket is the name of the target S3 bucket.
+          displayName: Target Bucket
+          path: s3Compatible.targetBucket
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:s3Compatible
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: 'Endpoint is the IBM COS endpoint: http(s)://host:port.'
+          displayName: End Point
+          path: IBMCos.endpoint
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:ibmCos
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Secret refers to a secret that provides the credentials. The
+            secret should define IBM_COS_ACCESS_KEY_ID and IBM_COS_SECRET_ACCESS_KEY.
+          displayName: Secret
+          path: IBMCos.secret.name
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:ibmCos
+          - urn:alm:descriptor:io.kubernetes:Secret
+        - description: SignatureVersion specifies the client signature version to
+            use when signing requests.
+          displayName: Signature Version
+          path: IBMCos.signatureVersion
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:ibmCos
+          - urn:alm:descriptor:com.tectonic.ui:number
+        - description: TargetBucket is the name of the target IBM COS bucket.
+          displayName: Target Bucket
+          path: IBMCos.targetBucket
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:ibmCos
+          - urn:alm:descriptor:com.tectonic.ui:text
+        version: v1alpha1
+      - description: Storage target spec such as aws-s3, s3-compatible, ibm-cos and
+          more. Used in BucketClass to construct namespace policies.
+        displayName: Namespace Store
+        kind: NamespaceStore
+        name: namespacestores.noobaa.io
+        resources:
+        - kind: Service
+          name: services
+          version: v1
+        - kind: Secret
+          name: secrets
+          version: v1
+        - kind: ConfigMap
+          name: configmaps
+          version: v1
+        - kind: StatefulSet
+          name: statefulsets.apps
+          version: v1
+        specDescriptors:
+        - description: Region is the AWS region.
+          displayName: Region
+          path: awsS3.region
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:awsS3
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Secret refers to a secret that provides the credentials. The
+            secret should define AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.
+          displayName: Secret
+          path: awsS3.secret.name
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:awsS3
+          - urn:alm:descriptor:io.kubernetes:Secret
+        - description: SSLDisabled allows to disable SSL and use plain http.
+          displayName: SSL Disabled
+          path: awsS3.sslDisabled
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:awsS3
+          - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - description: TargetBucket is the name of the target S3 bucket.
+          displayName: Target Bucket
+          path: awsS3.targetBucket
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:awsS3
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: |2-
+             Secret refers to a secret that provides the credentials. The secret should define AccountName and AccountKey as provided
+            by Azure Blob.
+          displayName: Secret
+          path: azureBlob.secret.name
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:azureBlob
+          - urn:alm:descriptor:io.kubernetes:Secret
+        - description: TargetBlobContainer is the name of the target Azure Blob container.
+          displayName: Target Blob Container
+          path: azureBlob.targetBlobContainer
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:azureBlob
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: 'Endpoint is the S3 compatible endpoint: http(s)://host:port.'
+          displayName: End Point
+          path: s3Compatible.endpoint
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:s3Compatible
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Secret refers to a secret that provides the credentials. The
+            secret should define AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.
+          displayName: Secret
+          path: s3Compatible.secret.name
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:s3Compatible
+          - urn:alm:descriptor:io.kubernetes:Secret
+        - description: SignatureVersion specifies the client signature version to
+            use when signing requests.
+          displayName: Signature Version
+          path: s3Compatible.signatureVersion
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:s3Compatible
+          - urn:alm:descriptor:com.tectonic.ui:number
+        - description: TargetBucket is the name of the target S3 bucket.
+          displayName: Target Bucket
+          path: s3Compatible.targetBucket
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:s3Compatible
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: 'Endpoint is the IBM COS endpoint: http(s)://host:port.'
+          displayName: End Point
+          path: IBMCos.endpoint
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:ibmCos
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Secret refers to a secret that provides the credentials. The
+            secret should define IBM_COS_ACCESS_KEY_ID and IBM_COS_SECRET_ACCESS_KEY.
+          displayName: Secret
+          path: IBMCos.secret.name
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:ibmCos
+          - urn:alm:descriptor:io.kubernetes:Secret
+        - description: SignatureVersion specifies the client signature version to
+            use when signing requests.
+          displayName: Signature Version
+          path: IBMCos.signatureVersion
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:ibmCos
+          - urn:alm:descriptor:com.tectonic.ui:number
+        - description: TargetBucket is the name of the target IBM COS bucket.
+          displayName: Target Bucket
+          path: IBMCos.targetBucket
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:ibmCos
+          - urn:alm:descriptor:com.tectonic.ui:text
+        version: v1alpha1
+      - description: Storage policy spec  tiering, mirroring, spreading, namespace
+          policy. Combines BackingStores Or NamespaceStores. Referenced by ObjectBucketClaims.
+        displayName: Bucket Class
+        kind: BucketClass
+        name: bucketclasses.noobaa.io
+        resources:
+        - kind: Service
+          name: services
+          version: v1
+        - kind: Secret
+          name: secrets
+          version: v1
+        - kind: ConfigMap
+          name: configmaps
+          version: v1
+        - kind: StatefulSet
+          name: statefulsets.apps
+          version: v1
+        specDescriptors:
+        - description: BackingStores is an unordered list of backing store names.
+            The meaning of the list depends on the placement.
+          displayName: Backing Stores
+          path: placementPolicy.tiers[0].backingStores[0]
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:placementPolicy
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Placement specifies the type of placement for the tier If empty
+            it should have a single backing store.
+          displayName: Placement
+          path: placementPolicy.tiers[0].placement
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:placementPolicy
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Namespace Policy type specifies the type of the namespace policy
+            configuration.
+          displayName: Namespace Policy
+          path: namespacePolicy.type
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:namespacePolicy
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Resource specifies the namespace store configured by the bucket
+            class to be read and write targets.
+          displayName: Resource
+          path: namespacePolicy.single.resource
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:namespacePolicy
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Read Resources specifies the namespace stores configured by
+            the bucket class to be read targets.
+          displayName: Read Resources
+          path: namespacePolicy.Multi.readResources
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:namespacePolicy
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Write Resource specifies the namespace store configured by
+            the bucket class to be write target.
+          displayName: Write Resource
+          path: namespacePolicy.Multi.writeResource
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:namespacePolicy
+          - urn:alm:descriptor:com.tectonic.ui:text
+        - description: Hub Resource specifies the target namespace store configured
+            by the bucket class to be read and write targets.
+          displayName: Hub Resource
+          path: namespacePolicy.Cache.hubResource
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:fieldGroup:namespacePolicy
+          - urn:alm:descriptor:com.tectonic.ui:text
+        version: v1alpha1
+      - kind: NooBaaAccount
+        name: noobaaaccounts.noobaa.io
+        resources:
+        - kind: Service
+          name: services
+          version: v1
+        - kind: Secret
+          name: secrets
+          version: v1
+        - kind: ConfigMap
+          name: configmaps
+          version: v1
+        - kind: StatefulSet
+          name: statefulsets.apps
+          version: v1
+        version: v1alpha1
+      - description: Claim a bucket just like claiming a PV. Automate you app bucket
+          provisioning by creating OBC with your app deployment. A secret and configmap
+          (name=claim) will be created with access details for the app pods.
+        displayName: Object Bucket Claim
+        kind: ObjectBucketClaim
+        name: objectbucketclaims.objectbucket.io
+        resources:
+        - kind: Service
+          name: services
+          version: v1
+        - kind: Secret
+          name: secrets
+          version: v1
+        - kind: ConfigMap
+          name: configmaps
+          version: v1
+        - kind: StatefulSet
+          name: statefulsets.apps
+          version: v1
+        version: v1alpha1
+      - description: Used under-the-hood. Created per ObjectBucketClaim and keeps
+          provisioning information.
+        displayName: Object Bucket
+        kind: ObjectBucket
+        name: objectbuckets.objectbucket.io
+        resources:
+        - kind: Service
+          name: services
+          version: v1
+        - kind: Secret
+          name: secrets
+          version: v1
+        - kind: ConfigMap
+          name: configmaps
+          version: v1
+        - kind: StatefulSet
+          name: statefulsets.apps
+          version: v1
+        version: v1alpha1
+    description: "The noobaa operator creates and reconciles a NooBaa system in a
+      Kubernetes/Openshift cluster.\n\nNooBaa provides an S3 object-store service
+      abstraction and data placement policies to create hybrid and multi cloud data
+      solutions.\n\nFor more information on using NooBaa refer to [Github](https://github.com/noobaa/noobaa-core)
+      / [Website](https://www.noobaa.io) / [Articles](https://noobaa.desk.com). \n\n##
+      How does it work?\n\n- The operator deploys the noobaa core pod and two services
+      - Mgmt (UI/API) and S3 (object-store).\n- Both services require credentials
+      which you will get from a secret that the operator creates - use describe noobaa
+      to locate it.\n- The service addresses will also appear in the describe output
+      - pick the one that is suitable for your client:\n    - minikube - use the NodePort
+      address.\n    - remote cluster - probably need one of the External addresses.\n
+      \   - connect an application on the same cluster - use Internal DNS (though
+      any address should work)\n    \n- Feel free to email us or open github issues
+      on any question.\n\n## Getting Started\n\n### Notes:\n- The following instructions
+      are for **minikube** but it works on any Kubernetes/Openshift clusters.\n- This
+      will setup noobaa in the **my-noobaa-operator** namespace.\n- You will need
+      **jq**, **curl**, **kubectl** or **oc**, **aws-cli**.\n\n### 1. Install OLM
+      (if you don't have it already):\n```\ncurl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/0.12.0/install.sh
+      | bash -s 0.12.0\n```\n\n### 2. Install noobaa-operator:\n```\nkubectl create
+      -f https://operatorhub.io/install/noobaa-operator.yaml\n```\nWait for it to
+      be ready:\n```\nkubectl wait pod -n my-noobaa-operator -l noobaa-operator --for=condition=ready\n```\n\n###
+      3. Create noobaa system:\n```\ncurl -sL https://operatorhub.io/api/operator?packageName=noobaa-operator
+      | \n    jq '.operator.customResourceDefinitions[0].yamlExample | .metadata.namespace=\"my-noobaa-operator\"'
+      |\n    kubectl create -f -\n```\nWait for it to be ready:\n```\nkubectl wait
+      pod -n my-noobaa-operator -l noobaa-core --for=condition=ready\nkubectl get
+      noobaa -n my-noobaa-operator -w\n# NAME     PHASE   MGMT-ENDPOINTS                  S3-ENDPOINTS
+      \                   IMAGE                    AGE\n# noobaa   **Ready**   [https://192.168.64.12:31121]
+      \  [https://192.168.64.12:32557]   noobaa/noobaa-core:4.0   19m\n```\n\n###
+      4. Get system information to your shell:\n```\nNOOBAA_SECRET=$(kubectl get noobaa
+      noobaa -n my-noobaa-operator -o json | jq -r '.status.accounts.admin.secretRef.name'
+      )\nNOOBAA_MGMT=$(kubectl get noobaa noobaa -n my-noobaa-operator -o json | jq
+      -r '.status.services.serviceMgmt.nodePorts[0]' )\nNOOBAA_S3=$(kubectl get noobaa
+      noobaa -n my-noobaa-operator -o json | jq -r '.status.services.serviceS3.nodePorts[0]'
+      )\nNOOBAA_ACCESS_KEY=$(kubectl get secret $NOOBAA_SECRET -n my-noobaa-operator
+      -o json | jq -r '.data.AWS_ACCESS_KEY_ID|@base64d')\nNOOBAA_SECRET_KEY=$(kubectl
+      get secret $NOOBAA_SECRET -n my-noobaa-operator -o json | jq -r '.data.AWS_SECRET_ACCESS_KEY|@base64d')\n```\n\n###
+      5. Connect to Mgmt UI:\n```\n# show email/password from the secret:\nkubectl
+      get secret $NOOBAA_SECRET -n my-noobaa-operator -o json | jq '.data|map_values(@base64d)'\n\n#
+      open mgmt UI login:\nopen $NOOBAA_MGMT\n```\n\n### 6. Connect to S3 with aws-cli:\n```\nalias
+      s3='AWS_ACCESS_KEY_ID=$NOOBAA_ACCESS_KEY AWS_SECRET_ACCESS_KEY=$NOOBAA_SECRET_KEY
+      aws --endpoint $NOOBAA_S3 --no-verify-ssl s3'\ns3 ls\ns3 sync /var/log/ s3://first.bucket\ns3
+      ls s3://first.bucket\n```\n"
+    displayName: NooBaa Operator
+    installModes:
+    - supported: true
+      type: OwnNamespace
+    - supported: false
+      type: SingleNamespace
+    - supported: false
+      type: MultiNamespace
+    - supported: false
+      type: AllNamespaces
+    keywords:
+    - noobaa
+    - kubernetes
+    - openshift
+    - cloud
+    - hybrid
+    - multi
+    - data
+    - storage
+    - s3
+    - tiering
+    - mirroring
+    links:
+    - name: Github
+      url: https://github.com/noobaa/noobaa-core
+    - name: Website
+      url: https://www.noobaa.io
+    - name: Articles
+      url: https://noobaa.desk.com
+    maintainers:
+    - email: gmargali@redhat.com
+      name: Guy Margalit
+    - email: etamir@redhat.com
+      name: Eran Tamir
+    - email: nbecker@redhat.com
+      name: Nimrod Becker
+    maturity: alpha
+    minKubeVersion: 1.16.0
+    provider:
+      name: NooBaa
+relatedImages:
+- image: quay.io/okderators/noobaa-core:4.15.0-2024-10-16-184240
+  name: noobaa-core
+- image: quay.io/okderators/noobaa-operator-bundle:4.15.0-2024-10-16-184240
+  name: ""
+- image: quay.io/okderators/noobaa-operator:4.15.0-2024-10-16-184240
+  name: noobaa-operator
+- image: quay.io/sclorg/postgresql-12-c8s:latest
+  name: noobaa-psql-12
+- image: quay.io/sclorg/postgresql-15-c9s:latest
+  name: noobaa-db
+schema: olm.bundle

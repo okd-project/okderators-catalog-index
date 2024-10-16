@@ -1,0 +1,116 @@
+---
+image: quay.io/okderators/csi-addons-bundle:4.15.0-2024-10-16-184240
+name: csi-addons.v4.15.0-2024-10-16-184240
+package: csi-addons
+properties:
+- type: olm.gvk
+  value:
+    group: csiaddons.openshift.io
+    kind: CSIAddonsNode
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: csiaddons.openshift.io
+    kind: NetworkFence
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: csiaddons.openshift.io
+    kind: ReclaimSpaceCronJob
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: csiaddons.openshift.io
+    kind: ReclaimSpaceJob
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: replication.storage.openshift.io
+    kind: VolumeReplication
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: replication.storage.openshift.io
+    kind: VolumeReplicationClass
+    version: v1alpha1
+- type: olm.package
+  value:
+    packageName: csi-addons
+    version: 4.15.0-2024-10-16-184240
+- type: olm.csv.metadata
+  value:
+    annotations:
+      alm-examples: '[]'
+      capabilities: Basic Install
+      createdAt: "2024-10-16T17:52:15Z"
+      olm.skipRange: ""
+      operators.operatorframework.io/builder: operator-sdk-unknown
+      operators.operatorframework.io/operator-type: non-standalone
+      operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
+    apiServiceDefinitions: {}
+    crdDescriptions:
+      owned:
+      - description: CSIAddonsNode is the Schema for the csiaddonsnode API
+        displayName: CSIAddons Node
+        kind: CSIAddonsNode
+        name: csiaddonsnodes.csiaddons.openshift.io
+        version: v1alpha1
+      - description: NetworkFence is the Schema for the networkfences API
+        displayName: Network Fence
+        kind: NetworkFence
+        name: networkfences.csiaddons.openshift.io
+        version: v1alpha1
+      - description: ReclaimSpaceCronJob is the Schema for the reclaimspacecronjobs
+          API
+        displayName: Reclaim Space CronJob
+        kind: ReclaimSpaceCronJob
+        name: reclaimspacecronjobs.csiaddons.openshift.io
+        version: v1alpha1
+      - description: ReclaimSpaceJob is the Schema for the reclaimspacejobs API
+        displayName: Reclaim Space Job
+        kind: ReclaimSpaceJob
+        name: reclaimspacejobs.csiaddons.openshift.io
+        version: v1alpha1
+      - description: VolumeReplicationClass is the Schema for the volumereplicationclasses
+          API
+        displayName: Volume Replication Class
+        kind: VolumeReplicationClass
+        name: volumereplicationclasses.replication.storage.openshift.io
+        version: v1alpha1
+      - description: VolumeReplication is the Schema for the volumereplications API
+        displayName: Volume Replication
+        kind: VolumeReplication
+        name: volumereplications.replication.storage.openshift.io
+        version: v1alpha1
+    description: CSI Addons provides the CSI Addons Controller that enables advanced
+      storage operations for CSI-drivers.
+    displayName: CSI Addons
+    installModes:
+    - supported: true
+      type: OwnNamespace
+    - supported: false
+      type: SingleNamespace
+    - supported: false
+      type: MultiNamespace
+    - supported: true
+      type: AllNamespaces
+    keywords:
+    - storage
+    - csi
+    links:
+    - name: CSI Addons
+      url: https://csi-addons.github.io
+    maintainers:
+    - email: csi-addons@redhat.com
+      name: CSI Addons Community
+    maturity: alpha
+    provider:
+      name: CSI Addons Community
+relatedImages:
+- image: gcr.io/kubebuilder/kube-rbac-proxy:v0.8.0
+  name: ""
+- image: quay.io/okderators/csi-addons-bundle:4.15.0-2024-10-16-184240
+  name: ""
+- image: quay.io/okderators/csi-k8s-controller:4.15.0-2024-10-16-184240
+  name: ""
+schema: olm.bundle

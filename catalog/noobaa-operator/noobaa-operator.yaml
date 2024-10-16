@@ -13,3 +13,5 @@ entries:
   - name: noobaa-operator.v4.15.0-2024-05-28-183339
   - name: noobaa-operator.v4.15.0-2024-05-31-154703
     replaces: noobaa-operator.v4.15.0-2024-05-28-183339
+  - name: noobaa-operator.v4.15.0-2024-10-16-184240
+    replaces: noobaa-operator.v4.15.0-2024-05-31-154703

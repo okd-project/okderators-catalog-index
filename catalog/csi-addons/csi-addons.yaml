@@ -11,3 +11,5 @@ package: csi-addons
 name: alpha
 entries:
   - name: csi-addons.v4.15.0-2024-05-27-184620
+  - name: csi-addons.v4.15.0-2024-10-16-184240
+    replaces: csi-addons.v4.15.0-2024-05-27-184620
