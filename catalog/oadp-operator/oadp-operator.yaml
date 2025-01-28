@@ -8,3 +8,5 @@ package: oadp-operator
 name: alpha
 entries:
   - name: oadp-operator.v1.4.0-2024-09-04-143635
+  - name: oadp-operator.v1.4.0-2025-01-23-195220
+    replaces: oadp-operator.v1.4.0-2024-09-04-143635
