@@ -1,0 +1,13 @@
+---
+schema: olm.package
+name: okd-pipelines-operator
+defaultChannel: alpha
+icon:
+  base64data:
+  type: image/png
+---
+schema: olm.channel
+package: okd-pipelines-operator
+name: alpha
+entries:
+  - name: okd-pipelines-operator.v1.7.0-2025-02-11-151011

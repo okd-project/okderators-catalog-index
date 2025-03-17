@@ -1,0 +1,680 @@
+---
+image: quay.io/okderators/pipelines/operator-bundle:1.7.0-2025-02-11-151011
+name: okd-pipelines-operator.v1.7.0-2025-02-11-151011
+package: okd-pipelines-operator
+properties:
+- type: olm.gvk
+  value:
+    group: operator.tekton.dev
+    kind: ManualApprovalGate
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: operator.tekton.dev
+    kind: OpenShiftPipelinesAsCode
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: operator.tekton.dev
+    kind: TektonAddon
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: operator.tekton.dev
+    kind: TektonChain
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: operator.tekton.dev
+    kind: TektonConfig
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: operator.tekton.dev
+    kind: TektonHub
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: operator.tekton.dev
+    kind: TektonInstallerSet
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: operator.tekton.dev
+    kind: TektonPipeline
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: operator.tekton.dev
+    kind: TektonResult
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: operator.tekton.dev
+    kind: TektonTrigger
+    version: v1alpha1
+- type: olm.package
+  value:
+    packageName: okd-pipelines-operator
+    version: 1.7.0-2025-02-11-151011
+- type: olm.csv.metadata
+  value:
+    annotations:
+      alm-examples: |-
+        [
+          {
+            "apiVersion": "operator.tekton.dev/v1alpha1",
+            "kind": "ManualApprovalGate",
+            "metadata": {
+              "name": "manual-approval-gate"
+            },
+            "spec": {
+              "targetNamespace": "openshift-pipelines"
+            }
+          },
+          {
+            "apiVersion": "operator.tekton.dev/v1alpha1",
+            "kind": "OpenShiftPipelinesAsCode",
+            "metadata": {
+              "name": "pipelines-as-code"
+            },
+            "spec": {
+              "targetNamespace": "openshift-pipelines"
+            }
+          },
+          {
+            "apiVersion": "operator.tekton.dev/v1alpha1",
+            "kind": "TektonAddon",
+            "metadata": {
+              "name": "addon"
+            },
+            "spec": {
+              "targetNamespace": "openshift-pipelines"
+            }
+          },
+          {
+            "apiVersion": "operator.tekton.dev/v1alpha1",
+            "kind": "TektonChain",
+            "metadata": {
+              "name": "chain"
+            },
+            "spec": {
+              "targetNamespace": "openshift-pipelines"
+            }
+          },
+          {
+            "apiVersion": "operator.tekton.dev/v1alpha1",
+            "kind": "TektonConfig",
+            "metadata": {
+              "name": "config"
+            },
+            "spec": {
+              "addon": {
+                "params": [
+                  {
+                    "name": "pipelineTemplates",
+                    "value": "true"
+                  },
+                  {
+                    "name": "resolverTasks",
+                    "value": "true"
+                  },
+                  {
+                    "name": "resolverStepActions",
+                    "value": "true"
+                  }
+                ]
+              },
+              "params": [
+                {
+                  "name": "createRbacResource",
+                  "value": "true"
+                }
+              ],
+              "profile": "all",
+              "pruner": {
+                "keep": 100,
+                "resources": [
+                  "pipelinerun",
+                  "taskrun"
+                ],
+                "schedule": "0 8 * * *"
+              },
+              "targetNamespace": "openshift-pipelines"
+            }
+          },
+          {
+            "apiVersion": "operator.tekton.dev/v1alpha1",
+            "kind": "TektonHub",
+            "metadata": {
+              "name": "hub"
+            },
+            "spec": {
+              "api": {
+                "catalogRefreshInterval": "30m"
+              }
+            }
+          },
+          {
+            "apiVersion": "operator.tekton.dev/v1alpha1",
+            "kind": "TektonInstallerSet",
+            "metadata": {
+              "name": "foo"
+            },
+            "spec": {
+              "manifests": []
+            }
+          },
+          {
+            "apiVersion": "operator.tekton.dev/v1alpha1",
+            "kind": "TektonPipeline",
+            "metadata": {
+              "name": "pipeline"
+            },
+            "spec": {
+              "targetNamespace": "openshift-pipelines"
+            }
+          },
+          {
+            "apiVersion": "operator.tekton.dev/v1alpha1",
+            "kind": "TektonResult",
+            "metadata": {
+              "name": "result"
+            },
+            "spec": {
+              "auth_disable": true,
+              "db_enable_auto_migration": true,
+              "db_host": "tekton-results-postgres-service.openshift-pipelines.svc.cluster.local",
+              "db_port": 5432,
+              "log_level": "debug",
+              "logging_pvc_name": "tekton-logs",
+              "logs_api": true,
+              "logs_buffer_size": 32768,
+              "logs_path": "/logs",
+              "logs_type": "File",
+              "prometheus_port": 9090,
+              "server_port": 8080,
+              "targetNamespace": "openshift-pipelines",
+              "tls_hostname_override": "tekton-results-api-service.openshift-pipelines.svc.cluster.local"
+            }
+          },
+          {
+            "apiVersion": "operator.tekton.dev/v1alpha1",
+            "kind": "TektonTrigger",
+            "metadata": {
+              "name": "trigger"
+            },
+            "spec": {
+              "targetNamespace": "openshift-pipelines"
+            }
+          }
+        ]
+      capabilities: Full Lifecycle
+      categories: Developer Tools, Integration & Delivery
+      certified: "false"
+      console.openshift.io/plugins: '["pipelines-console-plugin"]'
+      createdAt: "2025-02-11T16:08:58Z"
+      description: OKD Pipelines is a cloud-native CI/CD solution for building pipelines
+        using Tekton concepts which run natively on OKD and Kubernetes.
+      features.operators.openshift.io/cnf: "false"
+      features.operators.openshift.io/cni: "false"
+      features.operators.openshift.io/csi: "false"
+      features.operators.openshift.io/disconnected: "true"
+      features.operators.openshift.io/fips-compliant: "true"
+      features.operators.openshift.io/proxy-aware: "true"
+      features.operators.openshift.io/tls-profiles: "false"
+      features.operators.openshift.io/token-auth-aws: "false"
+      features.operators.openshift.io/token-auth-azure: "false"
+      features.operators.openshift.io/token-auth-gcp: "false"
+      operators.operatorframework.io/builder: operator-sdk-v1.39.1
+      operators.operatorframework.io/internal-objects: '["tektoninstallersets.operator.tekton.dev",
+        "tektonconfigs.operator.tekton.dev","tektonpipelines.operator.tekton.dev","tektontriggers.operator.tekton.dev","tektonaddons.operator.tekton.dev",
+        "tektonhubs.operator.tekton.dev", "tektonresults.operator.tekton.dev", "tektonchains.operator.tekton.dev",
+        "openshiftpipelinesascodes.operator.tekton.dev", "manualapprovalgates.operator.tekton.dev"]'
+      operators.operatorframework.io/project_layout: unknown
+      repository: https://github.com/tektoncd/operator
+      support: OKD Community
+    apiServiceDefinitions: {}
+    crdDescriptions:
+      owned:
+      - description: Represents an installation of latest version of Manual Approval
+          Gate
+        displayName: Manual Approval Gate
+        kind: ManualApprovalGate
+        name: manualapprovalgates.operator.tekton.dev
+        resources:
+        - kind: tektoninstallersets
+          name: ""
+          version: v1alpha1
+        specDescriptors:
+        - description: Namespace where Manual Approval Gate installed
+          displayName: Target Namespace
+          path: targetNamespace
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        statusDescriptors:
+        - description: The version of Manual Approval Gate installed
+          displayName: Version
+          path: version
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        version: v1alpha1
+      - description: Represents an installation of latest version of OKD Pipelines
+          As Code
+        displayName: OKD Pipelines As Code
+        kind: OpenShiftPipelinesAsCode
+        name: openshiftpipelinesascodes.operator.tekton.dev
+        resources:
+        - kind: tektoninstallersets
+          name: ""
+          version: v1alpha1
+        specDescriptors:
+        - description: Namespace where Pipelines As Code installed
+          displayName: Target Namespace
+          path: targetNamespace
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        statusDescriptors:
+        - description: The version of Pipelines As Code installed
+          displayName: Version
+          path: version
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        version: v1alpha1
+      - description: Represents an installation of latest version of Addons (exclusively
+          Tasks, StepActions, consoleyamlsamples, consoleclidownloads and consolequickstarts)
+        displayName: Tekton Addons
+        kind: TektonAddon
+        name: tektonaddons.operator.tekton.dev
+        resources:
+        - kind: tektoninstallersets
+          name: ""
+          version: v1alpha1
+        specDescriptors:
+        - description: Namespace where Addons installed
+          displayName: Target Namespace
+          path: targetNamespace
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        statusDescriptors:
+        - description: The version of Addons installed
+          displayName: Version
+          path: version
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        version: v1alpha1
+      - description: Represents an installation of latest version of Chains
+        displayName: Tekton Chains
+        kind: TektonChain
+        name: tektonchains.operator.tekton.dev
+        resources:
+        - kind: tektoninstallersets
+          name: ""
+          version: v1alpha1
+        specDescriptors:
+        - description: Namespace where Addons installed
+          displayName: Target Namespace
+          path: targetNamespace
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        statusDescriptors:
+        - description: The version of Addons installed
+          displayName: Version
+          path: version
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        version: v1alpha1
+      - description: Represents an installation of latest version of Tekton components,
+          TektonPipeline, TektonTrigger and TektonAddon
+        displayName: Tekton Configuration
+        kind: TektonConfig
+        name: tektonconfigs.operator.tekton.dev
+        resources:
+        - kind: tektonpipelines
+          name: pipeline
+          version: v1alpha1
+        - kind: tektontriggers
+          name: trigger
+          version: v1alpha1
+        - kind: tektonaddons
+          name: addon
+          version: v1alpha1
+        - kind: openshiftpipelinesascodes
+          name: pipelinesascode
+          version: v1alpha1
+        specDescriptors:
+        - description: Namespace where Tekton components are installed
+          displayName: Target Namespace
+          path: targetNamespace
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        - description: Installation Profile (specifies which of the Tekton components
+            are installed)
+          displayName: Profile
+          path: profile
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        statusDescriptors:
+        - description: The version of Operator installed
+          displayName: Version
+          path: version
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        version: v1alpha1
+      - description: Represents an installation of latest version of Hub
+        displayName: Tekton Hub
+        kind: TektonHub
+        name: tektonhubs.operator.tekton.dev
+        resources:
+        - kind: tektoninstallersets
+          name: ""
+          version: v1alpha1
+        specDescriptors:
+        - description: Namespace where Addons installed
+          displayName: Target Namespace
+          path: targetNamespace
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        statusDescriptors:
+        - description: The version of Addons installed
+          displayName: Version
+          path: version
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        version: v1alpha1
+      - description: This CustomResourceDefinition (CRD) is used internally by the
+          other OKD Pipelines CRDs to maintain the lifecycle of OKD Pipelines Components
+        displayName: Tekton Installer Set
+        kind: TektonInstallerSet
+        name: tektoninstallersets.operator.tekton.dev
+        resources:
+        - kind: clusterroles
+          name: ""
+          version: v1
+        - kind: customresourcedefinitions
+          name: ""
+          version: v1beta1
+        - kind: deployments
+          name: ""
+          version: v1beta1
+        - kind: clusterrolebindings
+          name: ""
+          version: v1beta1
+        - kind: services
+          name: ""
+          version: v1
+        - kind: pods
+          name: ""
+          version: v1
+        - kind: configmaps
+          name: ""
+          version: v1
+        - kind: config
+          name: ""
+          version: v1alpha1
+        - kind: namespaces
+          name: ""
+          version: v1
+        - kind: serviceaccounts
+          name: ""
+          version: v1
+        specDescriptors:
+        - description: List of OKD API resources managed by this InstallerSet
+          displayName: Manifests
+          path: manifests
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        statusDescriptors:
+        - description: The version of Operator installed
+          displayName: ObservedGeneration
+          path: observedGeneration
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        version: v1alpha1
+      - description: Represents an installation of latest version of Tekton Pipelines
+        displayName: Tekton Pipelines
+        kind: TektonPipeline
+        name: tektonpipelines.operator.tekton.dev
+        resources:
+        - kind: tektoninstallersets
+          name: ""
+          version: v1alpha1
+        specDescriptors:
+        - description: Namespace where Tekton Pipelines installed
+          displayName: Target Namespace
+          path: targetNamespace
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        statusDescriptors:
+        - description: The version of Tekton Pipelines installed
+          displayName: Version
+          path: version
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        version: v1alpha1
+      - description: Represents an installation of latest version of Tekton Results
+        displayName: Tekton Results
+        kind: TektonResult
+        name: tektonresults.operator.tekton.dev
+        resources:
+        - kind: tektoninstallersets
+          name: ""
+          version: v1alpha1
+        specDescriptors:
+        - description: Namespace where Addons installed
+          displayName: Target Namespace
+          path: targetNamespace
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        statusDescriptors:
+        - description: The version of Addons installed
+          displayName: Version
+          path: version
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        version: v1alpha1
+      - description: Represents an installation of latest version of Tekton Triggers
+        displayName: Tekton Triggers
+        kind: TektonTrigger
+        name: tektontriggers.operator.tekton.dev
+        resources:
+        - kind: tektoninstallersets
+          name: ""
+          version: v1alpha1
+        specDescriptors:
+        - description: Namespace where Tekton Triggers installed
+          displayName: Target Namespace
+          path: targetNamespace
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        statusDescriptors:
+        - description: The version of Tekton Triggers installed
+          displayName: Version
+          path: version
+          x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:label
+        version: v1alpha1
+    description: |
+      OKD Pipelines is a cloud-native continuous integration and delivery
+      (CI/CD) solution for building pipelines using [Tekton](https://tekton.dev).
+      Tekton is a flexible Kubernetes-native open-source CI/CD framework, which
+      enables automating deployments across multiple platforms (Kubernetes,
+      serverless, VMs, etc) by abstracting away the underlying details.
+
+      ## Features
+
+      * Standard CI/CD pipelines definition
+      * Build images with Kubernetes tools such as S2I, Buildah, Buildpacks, Kaniko, etc
+      * Deploy applications to multiple platforms such as Kubernetes, serverless and VMs
+      * Easy to extend and integrate with existing tools
+      * Scale pipelines on-demand
+      * Portable across any Kubernetes platform
+      * Designed for microservices and decentralized team
+      * Integrated with OKD Developer Console
+
+      ## Installation
+
+      _OKD Pipelines Operator_ gets installed into a single namespace (openshift-operators) which would then install _OKD Pipelines_ into the openshift-pipelines namespace. _OKD Pipelines_ is however cluster-wide and can run pipelines created in any namespace.
+
+      ### Components
+
+      - Tekton Pipelines: v0.65.5
+      - Tekton Triggers: v0.30.1
+      - Pipelines as Code: v0.29.1
+      - Tekton Chains: v0.23.1
+      - Tekton Hub (tech-preview): v1.19.2
+      - Tekton Results (tech-preview): v0.13.3
+      - Manual Approval Gate (tech-preview): v0.4.1
+
+      ## Getting Started
+
+      In order to get familiar with _OKD Pipelines_ concepts and create your first pipeline, follow the [OKD Pipelines Docs](https://docs.openshift.com/pipelines/OPENSHIFT_PIPELINES_MINOR_VERSION/create/creating-applications-with-cicd-pipelines.html).
+
+      ## CLI (tkn)
+
+      Tekton Pipelines cli project provides a CLI (tkn) for interacting with OKD Pipelines.
+
+      [Download tkn](/command-line-tools) (links will be available on `command line tools` page after this operator is installed).
+    displayName: OKD Pipelines
+    installModes:
+    - supported: false
+      type: OwnNamespace
+    - supported: false
+      type: SingleNamespace
+    - supported: false
+      type: MultiNamespace
+    - supported: true
+      type: AllNamespaces
+    keywords:
+    - tektoncd
+    - okd
+    - build
+    - pipeline
+    labels:
+      operatorframework.io/arch.amd64: supported
+      operatorframework.io/arch.arm64: supported
+      operatorframework.io/arch.ppc64le: supported
+      operatorframework.io/arch.s390x: supported
+    links:
+    - name: Tekton Pipeline GitHub Repository
+      url: https://github.com/tektoncd/pipeline
+    - name: Tekton Operator GitHub Repository
+      url: https://github.com/tektoncd/operator
+    maintainers:
+    - email: pipelines-extcomm@redhat.com
+      name: Red Hat
+    maturity: alpha
+    provider:
+      name: OKD Community
+relatedImages:
+- image: quay.io/okderators/pipelines/chains-controller:1.7.0-2025-02-11-151011
+  name: IMAGE_CHAINS_TEKTON_CHAINS_CONTROLLER
+- image: quay.io/okderators/pipelines/cli-tkn:1.7.0-2025-02-11-151011
+  name: IMAGE_ADDONS_TKN
+- image: quay.io/okderators/pipelines/cli-tkn:1.7.0-2025-02-11-151011
+  name: IMAGE_ADDONS_PARAM_TKN_IMAGE
+- image: quay.io/okderators/pipelines/cli-tkn:1.7.0-2025-02-11-151011
+  name: IMAGE_JOB_PRUNER_TKN
+- image: quay.io/okderators/pipelines/console-plugin:1.7.0-2025-02-11-151011
+  name: IMAGE_PIPELINES_CONSOLE_PLUGIN
+- image: quay.io/okderators/pipelines/git-init:1.7.0-2025-02-11-151011
+  name: IMAGE_PIPELINES_ARG__GIT_IMAGE
+- image: quay.io/okderators/pipelines/git-init:1.7.0-2025-02-11-151011
+  name: IMAGE_ADDONS_PARAM_GITINITIMAGE
+- image: quay.io/okderators/pipelines/git-init:1.7.0-2025-02-11-151011
+  name: IMAGE_ADDONS_PREPARE_AND_RUN
+- image: quay.io/okderators/pipelines/git-init:1.7.0-2025-02-11-151011
+  name: IMAGE_ADDONS_GIT_CLONE
+- image: quay.io/okderators/pipelines/hub-api:1.7.0-2025-02-11-151011
+  name: IMAGE_HUB_TEKTON_HUB_API
+- image: quay.io/okderators/pipelines/hub-db-migration:1.7.0-2025-02-11-151011
+  name: IMAGE_HUB_TEKTON_HUB_DB_MIGRATION
+- image: quay.io/okderators/pipelines/hub-ui:1.7.0-2025-02-11-151011
+  name: IMAGE_HUB_TEKTON_HUB_UI
+- image: quay.io/okderators/pipelines/manual-approval-gate:1.7.0-2025-02-11-151011
+  name: IMAGE_MAG_TEKTON_TASKGROUP_CONTROLLER
+- image: quay.io/okderators/pipelines/manual-approval-gate:1.7.0-2025-02-11-151011
+  name: IMAGE_MAG_MANUAL_APPROVAL
+- image: quay.io/okderators/pipelines/operator-bundle:1.7.0-2025-02-11-151011
+  name: ""
+- image: quay.io/okderators/pipelines/operator-proxy:1.7.0-2025-02-11-151011
+  name: IMAGE_PIPELINES_PROXY
+- image: quay.io/okderators/pipelines/operator-webhook:1.7.0-2025-02-11-151011
+  name: TEKTON_OPERATOR_WEBHOOK
+- image: quay.io/okderators/pipelines/operator:1.7.0-2025-02-11-151011
+  name: OPENSHIFT_PIPELINES_OPERATOR_LIFECYCLE
+- image: quay.io/okderators/pipelines/operator:1.7.0-2025-02-11-151011
+  name: OPENSHIFT_PIPELINES_OPERATOR_CLUSTER_OPERATIONS
+- image: quay.io/okderators/pipelines/pipeline-controller:1.7.0-2025-02-11-151011
+  name: IMAGE_PIPELINES_TEKTON_PIPELINES_CONTROLLER
+- image: quay.io/okderators/pipelines/pipeline-entrypoint:1.7.0-2025-02-11-151011
+  name: IMAGE_PIPELINES_ARG__ENTRYPOINT_IMAGE
+- image: quay.io/okderators/pipelines/pipeline-entrypoint:1.7.0-2025-02-11-151011
+  name: IMAGE_PIPELINES_ARG__SHELL_IMAGE
+- image: quay.io/okderators/pipelines/pipeline-events:1.7.0-2025-02-11-151011
+  name: IMAGE_PIPELINES_TEKTON_EVENTS_CONTROLLER
+- image: quay.io/okderators/pipelines/pipeline-nop:1.7.0-2025-02-11-151011
+  name: IMAGE_PIPELINES_ARG__NOP_IMAGE
+- image: quay.io/okderators/pipelines/pipeline-resolvers:1.7.0-2025-02-11-151011
+  name: IMAGE_PIPELINES_CONTROLLER
+- image: quay.io/okderators/pipelines/pipeline-webhook:1.7.0-2025-02-11-151011
+  name: IMAGE_PIPELINES_WEBHOOK
+- image: quay.io/okderators/pipelines/pipeline-workingdirinit:1.7.0-2025-02-11-151011
+  name: IMAGE_PIPELINES_ARG__WORKINGDIRINIT_IMAGE
+- image: quay.io/okderators/pipelines/pipelines-as-code:1.7.0-2025-02-11-151011
+  name: IMAGE_PAC_PAC_CONTROLLER
+- image: quay.io/okderators/pipelines/pipelines-as-code:1.7.0-2025-02-11-151011
+  name: IMAGE_PAC_PAC_WEBHOOK
+- image: quay.io/okderators/pipelines/pipelines-as-code:1.7.0-2025-02-11-151011
+  name: IMAGE_PAC_PAC_WATCHER
+- image: quay.io/okderators/pipelines/results-api:1.7.0-2025-02-11-151011
+  name: IMAGE_RESULTS_API
+- image: quay.io/okderators/pipelines/results-retention-policy-agent:1.7.0-2025-02-11-151011
+  name: IMAGE_RESULTS_RETENTION_POLICY_AGENT
+- image: quay.io/okderators/pipelines/results-watcher:1.7.0-2025-02-11-151011
+  name: IMAGE_RESULTS_WATCHER
+- image: quay.io/okderators/pipelines/serve-tkn-cli:1.7.0-2025-02-11-151011
+  name: IMAGE_ADDONS_TKN_CLI_SERVE
+- image: quay.io/okderators/pipelines/triggers-controller:1.7.0-2025-02-11-151011
+  name: IMAGE_TRIGGERS_TEKTON_TRIGGERS_CONTROLLER
+- image: quay.io/okderators/pipelines/triggers-core-interceptors:1.7.0-2025-02-11-151011
+  name: IMAGE_TRIGGERS_TEKTON_TRIGGERS_CORE_INTERCEPTORS
+- image: quay.io/okderators/pipelines/triggers-eventlistenersink:1.7.0-2025-02-11-151011
+  name: IMAGE_TRIGGERS_ARG__EL_IMAGE
+- image: quay.io/okderators/pipelines/triggers-webhook:1.7.0-2025-02-11-151011
+  name: IMAGE_TRIGGERS_WEBHOOK
+- image: quay.io/openshift-knative/knative-client-kn:knative-v1.16
+  name: IMAGE_ADDONS_KN
+- image: quay.io/openshift-knative/knative-client-kn:knative-v1.16
+  name: IMAGE_ADDONS_PARAM_KN_IMAGE
+- image: quay.io/sclorg/postgresql-13-c9s:latest
+  name: IMAGE_HUB_TEKTON_HUB_DB
+- image: quay.io/sclorg/postgresql-13-c9s:latest
+  name: IMAGE_RESULTS_POSTGRES
+- image: registry.access.redhat.com/ubi9/buildah:latest
+  name: IMAGE_ADDONS_PARAM_BUILDER_IMAGE
+- image: registry.access.redhat.com/ubi9/buildah:latest
+  name: IMAGE_ADDONS_BUILD
+- image: registry.access.redhat.com/ubi9/buildah:latest
+  name: IMAGE_ADDONS_S2I_BUILD
+- image: registry.access.redhat.com/ubi9/openjdk-17:latest
+  name: IMAGE_ADDONS_MAVEN_GOALS
+- image: registry.access.redhat.com/ubi9/openjdk-17:latest
+  name: IMAGE_ADDONS_PARAM_MAVEN_IMAGE
+- image: registry.access.redhat.com/ubi9/s2i-core:latest
+  name: IMAGE_ADDONS_GEN_ENV_FILE
+- image: registry.access.redhat.com/ubi9/s2i-core:latest
+  name: IMAGE_ADDONS_GENERATE
+- image: registry.access.redhat.com/ubi9/s2i-core:latest
+  name: IMAGE_ADDONS_S2I_GENERATE
+- image: registry.access.redhat.com/ubi9/skopeo:latest
+  name: IMAGE_ADDONS_SKOPEO_COPY
+- image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+  name: IMAGE_ADDONS_MVN_SETTINGS
+- image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+  name: IMAGE_ADDONS_LOAD_SCRIPTS
+- image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+  name: IMAGE_ADDONS_MAVEN_GENERATE
+- image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+  name: IMAGE_ADDONS_PREPARE
+schema: olm.bundle
