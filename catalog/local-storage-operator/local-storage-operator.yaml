@@ -38,3 +38,9 @@ entries:
   - name: local-storage-operator.v4.18.0-2025-03-18-151011
     skips:
       - local-storage-operator.v4.15.0-2024-04-16-164915
+  - name: local-storage-operator.v4.18.0-2025-05-09-160237
+    skips:
+        - local-storage-operator.v4.15.0-2024-05-16-164915
+        - local-storage-operator.v4.18.0-2025-03-18-151011
+        - local-storage-operator.v4.18.0-2025-05-09-144205
+        - local-storage-operator.v4.18.0-2025-05-09-150527
