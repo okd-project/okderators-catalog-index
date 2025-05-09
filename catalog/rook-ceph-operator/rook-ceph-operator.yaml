@@ -1,0 +1,13 @@
+---
+schema: olm.package
+name: rook-ceph-operator
+defaultChannel: alpha
+icon:
+  base64data:
+  type: image/png
+---
+schema: olm.channel
+package: rook-ceph-operator
+name: alpha
+entries:
+  - name: rook-ceph-operator.v4.18.0-2025-04-10-114854

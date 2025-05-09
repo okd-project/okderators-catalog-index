@@ -1,5 +1,5 @@
 ---
-image: quay.io/okderators/sm-operator-bundle:2.6.1
+image: quay.io/okderators/sm-operator-bundle:2.6.1-4
 name: servicemeshoperator.v2.6.1
 package: servicemeshoperator
 properties:
@@ -50,7 +50,7 @@ properties:
       categories: OKD Optional, Integration & Delivery
       certified: "false"
       containerImage: quay.io/okderators/sm-operator:2.6.1
-      createdAt: 2024-09-17T14:07:02BST
+      createdAt: 2024-10-18T17:04:51BST
       description: The OKD Service Mesh Operator enables you to install, configure,
         and manage an instance of OKD Service Mesh. OKD is based on the open source
         Istio project.
@@ -284,7 +284,7 @@ properties:
     provider:
       name: OKD Community
 relatedImages:
-- image: quay.io/okderators/sm-operator-bundle:2.6.1
+- image: quay.io/okderators/sm-operator-bundle:2.6.1-4
   name: ""
 - image: quay.io/okderators/sm-operator:2.6.1
   name: ""

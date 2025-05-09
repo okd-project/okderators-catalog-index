@@ -1,0 +1,178 @@
+---
+image: quay.io/okderators/data-foundation/csi-addons-operator-bundle:4.18.0-2025-04-10-114854
+name: csi-addons.v4.18.0-2025-04-10-114854
+package: csi-addons
+properties:
+- type: olm.gvk
+  value:
+    group: csiaddons.openshift.io
+    kind: CSIAddonsNode
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: csiaddons.openshift.io
+    kind: EncryptionKeyRotationCronJob
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: csiaddons.openshift.io
+    kind: EncryptionKeyRotationJob
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: csiaddons.openshift.io
+    kind: NetworkFence
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: csiaddons.openshift.io
+    kind: NetworkFenceClass
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: csiaddons.openshift.io
+    kind: ReclaimSpaceCronJob
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: csiaddons.openshift.io
+    kind: ReclaimSpaceJob
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: replication.storage.openshift.io
+    kind: VolumeGroupReplication
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: replication.storage.openshift.io
+    kind: VolumeGroupReplicationClass
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: replication.storage.openshift.io
+    kind: VolumeGroupReplicationContent
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: replication.storage.openshift.io
+    kind: VolumeReplication
+    version: v1alpha1
+- type: olm.gvk
+  value:
+    group: replication.storage.openshift.io
+    kind: VolumeReplicationClass
+    version: v1alpha1
+- type: olm.package
+  value:
+    packageName: csi-addons
+    version: 4.18.0-2025-04-10-114854
+- type: olm.csv.metadata
+  value:
+    annotations:
+      alm-examples: '[]'
+      capabilities: Seamless Upgrades
+      createdAt: "2025-04-10T11:44:30Z"
+      olm.skipRange: '>=4.15.0 <4.18.0-2025-04-10-114854'
+      operators.operatorframework.io/builder: operator-sdk-unknown
+      operators.operatorframework.io/operator-type: non-standalone
+      operators.operatorframework.io/project_layout: go.kubebuilder.io/v4
+    apiServiceDefinitions: {}
+    crdDescriptions:
+      owned:
+      - description: CSIAddonsNode is the Schema for the csiaddonsnode API
+        displayName: CSIAddons Node
+        kind: CSIAddonsNode
+        name: csiaddonsnodes.csiaddons.openshift.io
+        version: v1alpha1
+      - description: EncryptionKeyRotationCronJob is the Schema for the encryptionkeyrotationcronjobs
+          API
+        displayName: EncryptionKeyRotation CronJob
+        kind: EncryptionKeyRotationCronJob
+        name: encryptionkeyrotationcronjobs.csiaddons.openshift.io
+        version: v1alpha1
+      - description: EncryptionKeyRotationJob is the Schema for the encryptionkeyrotationjobs
+          API
+        displayName: EncryptionKeyRotation Job
+        kind: EncryptionKeyRotationJob
+        name: encryptionkeyrotationjobs.csiaddons.openshift.io
+        version: v1alpha1
+      - description: NetworkFenceClass is the Schema for the networkfenceclasses API
+        displayName: Network Fence Class
+        kind: NetworkFenceClass
+        name: networkfenceclasses.csiaddons.openshift.io
+        version: v1alpha1
+      - description: NetworkFence is the Schema for the networkfences API
+        displayName: Network Fence
+        kind: NetworkFence
+        name: networkfences.csiaddons.openshift.io
+        version: v1alpha1
+      - description: ReclaimSpaceCronJob is the Schema for the reclaimspacecronjobs
+          API
+        displayName: Reclaim Space CronJob
+        kind: ReclaimSpaceCronJob
+        name: reclaimspacecronjobs.csiaddons.openshift.io
+        version: v1alpha1
+      - description: ReclaimSpaceJob is the Schema for the reclaimspacejobs API
+        displayName: Reclaim Space Job
+        kind: ReclaimSpaceJob
+        name: reclaimspacejobs.csiaddons.openshift.io
+        version: v1alpha1
+      - description: VolumeGroupReplicationClass is the Schema for the volumegroupreplicationclasses
+          API
+        displayName: Volume Group Replication Class
+        kind: VolumeGroupReplicationClass
+        name: volumegroupreplicationclasses.replication.storage.openshift.io
+        version: v1alpha1
+      - description: VolumeGroupReplicationContent is the Schema for the volumegroupreplicationcontents
+          API
+        displayName: Volume Group Replication Content
+        kind: VolumeGroupReplicationContent
+        name: volumegroupreplicationcontents.replication.storage.openshift.io
+        version: v1alpha1
+      - kind: VolumeGroupReplication
+        name: volumegroupreplications.replication.storage.openshift.io
+        version: v1alpha1
+      - description: VolumeReplicationClass is the Schema for the volumereplicationclasses
+          API
+        displayName: Volume Replication Class
+        kind: VolumeReplicationClass
+        name: volumereplicationclasses.replication.storage.openshift.io
+        version: v1alpha1
+      - description: VolumeReplication is the Schema for the volumereplications API
+        displayName: Volume Replication
+        kind: VolumeReplication
+        name: volumereplications.replication.storage.openshift.io
+        version: v1alpha1
+    description: CSI Addons provides the CSI Addons Controller that enables advanced
+      storage operations for CSI-drivers.
+    displayName: CSI Addons
+    installModes:
+    - supported: true
+      type: OwnNamespace
+    - supported: false
+      type: SingleNamespace
+    - supported: false
+      type: MultiNamespace
+    - supported: true
+      type: AllNamespaces
+    keywords:
+    - storage
+    - csi
+    links:
+    - name: CSI Addons
+      url: https://csi-addons.github.io
+    maintainers:
+    - email: csi-addons@redhat.com
+      name: CSI Addons Community
+    maturity: alpha
+    provider:
+      name: CSI Addons Community
+relatedImages:
+- image: quay.io/okderators/data-foundation/csi-addons-operator-bundle:4.18.0-2025-04-10-114854
+  name: ""
+- image: quay.io/okderators/data-foundation/csi-addons-operator:4.18.0-2025-04-10-114854
+  name: ""
+- image: quay.io/okderators/kube-rbac-proxy:4.18
+  name: ""
+schema: olm.bundle

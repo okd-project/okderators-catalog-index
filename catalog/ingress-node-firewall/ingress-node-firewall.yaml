@@ -1,0 +1,13 @@
+---
+schema: olm.package
+name: ingress-node-firewall
+defaultChannel: alpha
+icon:
+  base64data:
+  type: image/png
+---
+schema: olm.channel
+package: ingress-node-firewall
+name: alpha
+entries:
+  - name: ingress-node-firewall.v4.15.0-2024-10-21-125813

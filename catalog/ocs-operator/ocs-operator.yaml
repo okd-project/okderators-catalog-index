@@ -3,7 +3,20 @@ schema: olm.package
 name: ocs-operator
 defaultChannel: alpha
 icon:
-  base64data:
+  base64data: |
+    iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA
+    M1BMVEX////f39+fn59/f39gYGBAQEAgICC/v78AAAD95OT6r6/4lZTyKyn0RUT8ysn3enn1YF4V
+    1nMDAAACQ0lEQVR4nO2a2bKDIAxAZbN1rf//tVcEBe8oIAl6l5wn6wzNIYQWxKoiCIIgCIIgCIL4
+    TTAupKrDSMlfhaLLdzIS34GJ9PCLAsONfzH8TC0RwzNluyWi48sY53asarQkMPOFIr2BwDVQ1wfV
+    KNSI8dO7b1kMFEb8l/4mfr3dYoAxHVVuTyROCpYEZFUTw0mByikAg0BJge5GZlOWnTwPrmdgbmOB
+    MAY8bwq4xpnDtyEhWXxB0mepIQIMoQrr/Bo0raE/x7BfdJg+CZDAzxHg2eAIACEBBIGna+D5WUAC
+    JEACJHC5UdM+KtB0fT+MzwnM4TWfpjLbmpsFxqG3DN38cf47ulWgmXoPrcCge8MrAk3Xf8OWwk0C
+    W/ihbT7r9VIKtwi4we92H5dSKC/gBn9a77iEgBSSBLxg4+FdwDikCJz2dcvL0GUraAEVglftbvD3
+    tGspfAACYcQqMB12ch2H4gLnM94oFBcIVHoDFYgVIQmQAAn8cQF9YBJ5WF1WQK9rI2cOZQX0oUfk
+    wKKsQMKZQ1kBFq/CsgJLFYZTUFhAj0H4GLyNBBhhAvEUtOGFZwdbEdnjx9AGqw2tvtcFK0Agenzf
+    nO9B3HahPWqZCIu9wHC8LfDvHy9Y0w30c4Z3LVIUvL3giVa+wTv0kpK3BzE30DaHxiD8Gk8tdBL8
+    iG7wMcKnKPD9dnS7gu7OfYXwq1xqrhD3WMCGh9T+kYJ+Sen0ZTal/zS3KYmZ/Ut48+GJ8E4B4ekQ
+    QGFCmXoEQRAEQRAE8V/4Av6jPpDZkecOAAAAAElFTkSuQmCC
   type: image/png
 ---
 schema: olm.channel
@@ -15,3 +28,9 @@ entries:
     replaces: ocs-operator.v4.15.0-2024-05-30-201614
   - name: ocs-operator.v4.15.0-2024-10-16-184240
     replaces: ocs-operator.v4.15.0-2024-05-31-160556
+  - name: ocs-operator.v4.18.0-2025-04-10-114854
+    replaces: ocs-operator.v4.15.0-2024-10-16-184240
+    skips:
+      - ocs-operator.v4.15.0-2024-05-30-201614
+      - ocs-operator.v4.15.0-2024-05-31-160556
+      - ocs-operator.v4.15.0-2024-10-16-184240
