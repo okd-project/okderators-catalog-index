@@ -11,5 +11,7 @@ package: cluster-logging
 name: alpha
 entries:
   - name: clusterlogging.v5.9.0-2024-05-05-192913
-  - name: cluster-logging.v6.2.0-2025-05-25-184240
+  - name: cluster-logging.v6.2.0-2025-05-26-200125
     replaces: clusterlogging.v5.9.0-2024-05-05-192913
+    skips:
+      - cluster-logging.v6.2.0-2025-05-25-184240
