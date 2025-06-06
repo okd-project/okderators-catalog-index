@@ -31,11 +31,7 @@ In many cases we will use the same code and packaging that adapts operators for 
 Compared to many other Kubernetes distributions, OKD has additional security restrictions, assumptions and features that mean an operator or application that would work "out of the box" on a more vanilla Kubernetes distribution, does not function on OKD. For example, additional security profiles may need to be applied, or MachineConfigs applied to add node features.
 
 ## How do I use this catalog?
-To use this catalog, you can add it to your OKD cluster using the Operator Lifecycle Manager (OLM).
-To do this, you can use the script [install-catalog.sh](hack/install-catalog.sh) in this repository by running: 
-```bash
-curl -s https://raw.githubusercontent.com/okd-project/okderators-catalog-index/refs/heads/release-4.18/hack/install-catalog.sh | bash
-```
+Check out the [INSTALLING.md](docs/INSTALLING.md) document for instructions on how to install the catalog into your OKD cluster.
 
 ## Contributing
 This is a test project and we are seeking contributors. Please join the OKD Development Working Group or reach out on Slack in #okd-dev.
