@@ -1,0 +1,11 @@
+---
+schema: olm.package
+name: cluster-observability-operator
+defaultChannel: alpha
+---
+schema: olm.channel
+package: cluster-observability-operator
+name: alpha
+entries:
+  - name: cluster-observability-operator.v1.2.0-2025-08-05-110414
+    replaces: observability-operator.v0.2.0-2024-08-30-163052
