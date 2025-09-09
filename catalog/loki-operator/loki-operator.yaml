@@ -15,3 +15,5 @@ entries:
     replaces: loki-operator.v5.9.0-2024-05-06-220335
     skips:
       - loki-operator.v6.2.0-2025-05-25-184240
+  - name: loki-operator.v6.3.0-2025-08-08-133408
+    replaces: loki-operator.v6.2.0-2025-05-26-200125
