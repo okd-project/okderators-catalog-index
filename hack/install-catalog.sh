@@ -1,46 +1,12 @@
 #!/bin/bash
 
-NEXT_VERSION="4.19"
-SUPPORTED_VERSIONS="4.15 4.18"
+NEXT_VERSION="4.20"
+SUPPORTED_VERSIONS="4.15 4.18 4.19"
 
-CATALOG_YAML=$(cat <<EOF
-apiVersion: operators.coreos.com/v1alpha1
-kind: CatalogSource
-metadata:
-  name: okderators
-  namespace: openshift-marketplace
-spec:
-  displayName: OKDerators
-  image: 'quay.io/okderators/catalog-index:\$CATALOG_TAG'
-  publisher: OKD Community
-  icon:
-    base64data: '' # Todo
-    mediatype: '' # Todo
-  updateStrategy:
-    registryPoll:
-      interval: 10m
-  priority: -100 # Prefer default/manual CatalogSources
-  sourceType: grpc
-  grpcPodConfig:
-    nodeSelector:
-      kubernetes.io/os: linux
-      node-role.kubernetes.io/master: ''
-    priorityClassName: system-cluster-critical
-    securityContextConfig: restricted
-    tolerations:
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/master
-        operator: Exists
-      - effect: NoExecute
-        key: node.kubernetes.io/unreachable
-        operator: Exists
-        tolerationSeconds: 120
-      - effect: NoExecute
-        key: node.kubernetes.io/not-ready
-        operator: Exists
-        tolerationSeconds: 120
-EOF
-)
+# Get script directory
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+CATALOG_YAML=$(cat $SCRIPT_DIR/catalog-source.yaml)
 
 # Find installed command oc or kubectl
 if command -v oc &> /dev/null; then
