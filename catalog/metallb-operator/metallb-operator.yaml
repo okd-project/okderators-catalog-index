@@ -7,6 +7,6 @@ schema: olm.channel
 package: metallb-operator
 name: alpha
 entries:
-  - name: metallb-operator.v4.16.0-2024-08-09-235134
-  - name: metallb-operator.v4.18.0-2025-05-27-135521
-    replaces: metallb-operator.v4.16.0-2024-08-09-235134
+  - name: metallb-operator.v4.19.0-2025-08-26-151822
+    skips:
+      - metallb-operator.v4.18.0-2025-05-27-135521

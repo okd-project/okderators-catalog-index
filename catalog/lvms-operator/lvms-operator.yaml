@@ -7,7 +7,6 @@ schema: olm.channel
 package: lvms-operator
 name: alpha
 entries:
-  - name: lvms-operator.v4.18.0-2025-04-15-152453
-    skipRange: ">=4.15.0 <=4.18.0-2025-04-15-152453"
-  - name: lvms-operator.v4.18.0-2025-05-09-030805
-    replaces: lvms-operator.v4.18.0-2025-04-15-152453
+  - name: lvms-operator.v4.19.0-2025-08-26-154615
+    skips:
+      - lvms-operator.v4.18.0-2025-05-09-030805

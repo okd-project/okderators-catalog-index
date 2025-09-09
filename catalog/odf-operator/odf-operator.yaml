@@ -36,8 +36,7 @@ schema: olm.channel
 package: odf-operator
 name: alpha
 entries:
-  - name: odf-operator.v4.18.0-2025-04-10-114854
+  - name: odf-operator.v4.19.0-2025-09-09-141715
+    skipRange: ">=4.18.0 <4.19.0-2025-09-09-141715"
     skips:
-      - odf-operator.v4.15.0-2024-10-16-184240
-      - odf-operator.v4.15.0-2024-06-03-100635
-      - odf-operator.v4.15.0-2024-05-30-210839
+      - odf-operator.v4.18.0-2025-04-10-114854
