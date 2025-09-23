@@ -1,0 +1,10 @@
+---
+schema: olm.package
+name: multicluster-engine
+defaultChannel: alpha
+---
+schema: olm.channel
+package: multicluster-engine
+name: alpha
+entries:
+  - name: multicluster-engine.v2.10.0-2025-07-16-214032

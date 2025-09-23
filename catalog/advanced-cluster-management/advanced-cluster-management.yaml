@@ -1,0 +1,14 @@
+---
+schema: olm.package
+name: advanced-cluster-management
+defaultChannel: alpha
+---
+schema: olm.channel
+package: advanced-cluster-management
+name: alpha
+entries:
+  - name: advanced-cluster-management.v2.15.0-2025-07-11-142112
+    skips:
+      - advanced-cluster-management.v2.15.0-2025-07-11-142109
+      - advanced-cluster-management.v2.15.0-2025-07-11-142110
+      - advanced-cluster-management.v2.15.0-2025-07-11-142111
