@@ -42,11 +42,6 @@ if [[ "$CATALOG_TAG" == "$NEXT_VERSION" ]]; then
     CATALOG_TAG=$(echo "$SUPPORTED_VERSIONS" | tr ' ' '\n' | sort -V | tail -n 1)
 fi
 
-# Add check for 4.15 to convert the tag to latest
-if [[ "$CATALOG_TAG" == "4.15" ]]; then
-    CATALOG_TAG="latest"
-fi
-
 # Check if cluster version is supported by the catalog
 if [[ ! " ${SUPPORTED_VERSIONS[@]} " =~ " ${CATALOG_TAG} " ]]; then
     echo "Clusters running ${CATALOG_TAG} are not supported. Supported versions are: ${SUPPORTED_VERSIONS[*]}"
