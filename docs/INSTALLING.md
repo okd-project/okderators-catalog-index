@@ -34,6 +34,6 @@ This matrix shows the supported versions of OKD and the corresponding catalog im
 
 | OKD Version  | Status | Catalog Image                             |
 |--------------|--------|-------------------------------------------|
-| 4.15         | EOL    | `quay.io/okderators/catalog-index:latest` |
+| 4.15         | EOL    | `quay.io/okderators/catalog-index:4.15` |
 | 4.18         | EOL    | `quay.io/okderators/catalog-index:4.18`   |
 | 4.19         | Active | `quay.io/okderators/catalog-index:4.19`   |
