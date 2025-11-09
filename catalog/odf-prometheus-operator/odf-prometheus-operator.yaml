@@ -10,7 +10,6 @@ schema: olm.channel
 package: odf-prometheus-operator
 name: alpha
 entries:
-  - name: odf-prometheus-operator.v4.19.0-2025-09-09-141715
-    skipRange: ">=4.18.0 <4.19.0-2025-09-09-141715"
+  - name: odf-prometheus-operator.v4.20.0-2025-10-24-154513
     skips:
-      - odf-prometheus-operator.v4.18.0-2025-04-10-114854
+      - odf-prometheus-operator.v4.19.0-2025-09-09-141715
