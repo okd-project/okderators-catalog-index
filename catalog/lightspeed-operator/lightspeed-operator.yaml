@@ -1,0 +1,11 @@
+---
+schema: olm.package
+name: lightspeed-operator
+defaultChannel: alpha
+---
+schema: olm.channel
+package: lightspeed-operator
+name: alpha
+entries:
+  - name: lightspeed-operator.v1.0.8
+
