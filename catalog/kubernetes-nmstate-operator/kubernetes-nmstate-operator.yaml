@@ -1,0 +1,14 @@
+---
+schema: olm.package
+name: kubernetes-nmstate-operator
+defaultChannel: alpha
+icon:
+  base64data:
+  type: image/png
+---
+schema: olm.channel
+package: kubernetes-nmstate-operator
+name: alpha
+entries:
+  - name: kubernetes-nmstate-operator.v4.20.0-2025-12-27-212436
+

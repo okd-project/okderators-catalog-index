@@ -1,0 +1,10 @@
+---
+schema: olm.package
+name: web-terminal
+defaultChannel: alpha
+---
+schema: olm.channel
+package: web-terminal
+name: alpha
+entries:
+  - name: sriov-network-operator.v4.20.0-2025-11-24-162458

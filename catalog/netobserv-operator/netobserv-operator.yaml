@@ -8,3 +8,5 @@ package: netobserv-operator
 name: alpha
 entries:
   - name: netobserv-operator.v1.6.1
+  - name: netobserv-operator.v1.10.0-2025-12-27-124453
+    replaces: netobserv-operator.v1.6.1

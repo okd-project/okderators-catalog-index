@@ -7,6 +7,6 @@ schema: olm.channel
 package: sriov-network-operator
 name: alpha
 entries:
-  - name: sriov-network-operator.v4.20.0-2025-11-04-145420
+  - name: sriov-network-operator.v4.20.0-2025-11-24-162458
     skips:
       - sriov-network-operator.v4.19.0-2025-08-26-140549
