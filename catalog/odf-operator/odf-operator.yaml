@@ -39,3 +39,5 @@ entries:
   - name: odf-operator.v4.20.0-2025-10-24-154513
     skips:
       - odf-operator.v4.19.0-2025-09-09-141715
+  - name: odf-operator.v4.20.0-2026-02-09-114846
+    replaces: odf-operator.v4.20.0-2025-10-24-154513

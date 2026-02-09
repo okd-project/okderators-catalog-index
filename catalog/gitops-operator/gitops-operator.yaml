@@ -10,3 +10,5 @@ entries:
   - name: gitops-operator.v1.13.0-2024-08-09-135916
   - name: gitops-operator.v1.16.0-2025-06-04-121801
     replaces: gitops-operator.v1.13.0-2024-08-09-135916
+  - name: gitops-operator.v1.19.0-2026-02-07-151505
+    replaces: gitops-operator.v1.16.0-2025-06-04-121801

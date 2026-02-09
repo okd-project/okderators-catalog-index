@@ -7,4 +7,4 @@ schema: olm.channel
 package: web-terminal
 name: alpha
 entries:
-  - name: sriov-network-operator.v4.20.0-2025-11-24-162458
+  - name: web-terminal.v1.15.0-2025-12-28-144735

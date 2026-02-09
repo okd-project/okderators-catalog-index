@@ -1,0 +1,10 @@
+---
+schema: olm.package
+name: odf-external-snapshotter-operator
+defaultChannel: alpha
+---
+schema: olm.channel
+package: odf-external-snapshotter-operator
+name: alpha
+entries:
+  - name: odf-external-snapshotter-operator.v4.20.0-2026-02-09-114846
