@@ -3,7 +3,7 @@
 NEXT_VERSION="4.21"
 SUPPORTED_VERSIONS="4.15 4.18 4.19 4.20"
 
-CATALOG_YAML="$(curl https://raw.githubusercontent.com/okd-project/okderators-catalog-index/refs/heads/release-4.19/hack/catalog-source.yaml)"
+CATALOG_YAML="$(curl https://raw.githubusercontent.com/okd-project/okderators-catalog-index/refs/heads/release-4.20/hack/catalog-source.yaml)"
 
 # Find installed command oc or kubectl
 if command -v oc &> /dev/null; then
