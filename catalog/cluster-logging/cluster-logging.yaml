@@ -17,3 +17,5 @@ entries:
       - cluster-logging.v6.2.0-2025-05-25-184240
   - name: cluster-logging.v6.3.0-2025-08-08-133408
     replaces: cluster-logging.v6.2.0-2025-05-26-200125
+  - name: cluster-logging.v6.5.0-2026-06-04-101319
+    replaces: cluster-logging.v6.3.0-2025-08-08-133408
