@@ -36,8 +36,8 @@ schema: olm.channel
 package: odf-dependencies
 name: alpha
 entries:
-  - name: odf-dependencies.v4.20.0-2025-10-24-154513
+  - name: odf-dependencies.v4.21.0-2026-06-15-133815
     skips:
-      - odf-dependencies.v4.19.0-2025-09-09-141715
-  - name: odf-dependencies.v4.20.0-2026-02-09-114846
-    replaces: odf-dependencies.v4.20.0-2025-10-24-154513
+      - odf-dependencies.v4.20.0-2025-10-24-154513
+      - odf-dependencies.v4.20.0-2026-02-09-114846
+      - odf-dependencies.v4.21.0-2026-06-11-151655

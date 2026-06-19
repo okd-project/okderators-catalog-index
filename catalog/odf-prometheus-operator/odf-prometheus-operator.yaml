@@ -10,8 +10,8 @@ schema: olm.channel
 package: odf-prometheus-operator
 name: alpha
 entries:
-  - name: odf-prometheus-operator.v4.20.0-2025-10-24-154513
+  - name: odf-prometheus-operator.v4.21.0-2026-06-15-133815
     skips:
-      - odf-prometheus-operator.v4.19.0-2025-09-09-141715
-  - name: odf-prometheus-operator.v4.20.0-2026-02-09-114846
-    replaces: odf-prometheus-operator.v4.20.0-2025-10-24-154513
+      - odf-prometheus-operator.v4.20.0-2025-10-24-154513
+      - odf-prometheus-operator.v4.20.0-2026-02-09-114846
+      - odf-prometheus-operator.v4.21.0-2026-06-11-151655

@@ -115,6 +115,6 @@ schema: olm.channel
 package: nfd
 name: alpha
 entries:
-  - name: nfd.v4.20.0-2026-02-06-112514
+  - name: nfd.v4.21.0-2026-04-21-163640
     skips:
-      - nfd.v4.19.0-2025-08-26-143846
+      - nfd.v4.20.0-2026-02-06-112514

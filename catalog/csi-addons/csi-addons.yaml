@@ -10,8 +10,8 @@ schema: olm.channel
 package: csi-addons
 name: alpha
 entries:
-  - name: csi-addons.v4.20.0-2025-10-24-154513
+  - name: csi-addons.v4.21.0-2026-06-15-133815
     skips:
-      - csi-addons.v4.19.0-2025-09-09-141715
-  - name: csi-addons.v4.20.0-2026-02-09-114846
-    replaces: csi-addons.v4.20.0-2025-10-24-154513
+      - csi-addons.v4.20.0-2025-10-24-154513
+      - csi-addons.v4.20.0-2026-02-09-114846
+      - csi-addons.v4.21.0-2026-06-11-151655

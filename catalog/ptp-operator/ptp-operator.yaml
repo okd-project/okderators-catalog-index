@@ -1,0 +1,13 @@
+---
+schema: olm.package
+name: ptp-operator
+defaultChannel: alpha
+icon:
+  base64data:
+  type: image/png
+---
+schema: olm.channel
+package: ptp-operator
+name: alpha
+entries:
+  - name: ptp-operator.v4.21.0-2026-06-15-11304

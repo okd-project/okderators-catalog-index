@@ -1,7 +1,7 @@
 #!/bin/bash
 
-NEXT_VERSION="4.21"
-SUPPORTED_VERSIONS="4.15 4.18 4.19 4.20"
+NEXT_VERSION="4.22"
+SUPPORTED_VERSIONS="4.15 4.18 4.19 4.20 4.21"
 
 CATALOG_YAML="$(curl https://raw.githubusercontent.com/okd-project/okderators-catalog-index/refs/heads/release-4.20/hack/catalog-source.yaml)"
 

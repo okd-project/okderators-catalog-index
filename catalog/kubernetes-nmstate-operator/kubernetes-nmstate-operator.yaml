@@ -10,5 +10,7 @@ schema: olm.channel
 package: kubernetes-nmstate-operator
 name: alpha
 entries:
-  - name: kubernetes-nmstate-operator.v4.20.0-2025-12-27-212436
+  - name: kubernetes-nmstate-operator.v4.21.0-2026-05-05-165851
+    skips:
+      - kubernetes-nmstate-operator.v4.20.0-2025-12-27-212436
 

@@ -10,4 +10,6 @@ schema: olm.channel
 package: pf-status-relay-operator
 name: alpha
 entries:
-  - name: pf-status-relay-operator.v4.20.0-2025-12-14-152353
+  - name: pf-status-relay-operator.v4.21.0-2025-12-14-152353
+    skips:
+      - pf-status-relay-operator.v4.20.0-2025-12-14-152353

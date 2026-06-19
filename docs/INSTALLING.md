@@ -23,7 +23,7 @@ You must be authenticated as a `cluster-admin`, if successful the command will r
 
 If you use ArgoCD or a similar GitOps tool to track your CatalogSources, you can use the following YAML as a starting point:
 
-https://raw.githubusercontent.com/okd-project/okderators-catalog-index/refs/heads/release-4.19/hack/catalog-source.yaml
+https://raw.githubusercontent.com/okd-project/okderators-catalog-index/refs/heads/release-4.21/hack/catalog-source.yaml
 
 > [!IMPORTANT]
 > Make sure to replace the `$CATALOG_TAG` variable with the appropriate tag for your OKD version. See the Supported Versions table below.
@@ -37,4 +37,5 @@ This matrix shows the supported versions of OKD and the corresponding catalog im
 | 4.15         | EOL    | `quay.io/okderators/catalog-index:latest` |
 | 4.18         | EOL    | `quay.io/okderators/catalog-index:4.18`   |
 | 4.19         | EOL    | `quay.io/okderators/catalog-index:4.19`   |
-| 4.20         | Active | `quay.io/okderators/catalog-index:4.20`   |
+| 4.20         | EOL    | `quay.io/okderators/catalog-index:4.20`   |
+| 4.21         | Active | `quay.io/okderators/catalog-index:4.21`   |
