@@ -1,10 +1,10 @@
 name: Deploy Production Catalog
 
-on: 
+on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - 'release-*'
 
 jobs:
   build-deploy:
@@ -13,6 +13,16 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+      - name: Derive catalog tag from branch name
+        id: catalog-tag
+        # release-4.21 -> 4.21; guards workflow_dispatch runs started
+        # from a branch that does not deploy to a versioned tag
+        run: |
+          if [[ "$GITHUB_REF_NAME" != release-* ]]; then
+            echo "Branch '$GITHUB_REF_NAME' is not a release branch; refusing to deploy." >&2
+            exit 1
+          fi
+          echo "tag=${GITHUB_REF_NAME#release-}" >> "$GITHUB_OUTPUT"
       - name: Prepare image tags and labels
         id: image-meta-gen
         uses: docker/metadata-action@v5
@@ -20,7 +30,7 @@ jobs:
           images: |
             quay.io/okderators/catalog-index
           tags: |
-            type=raw,value=latest
+            type=raw,value=${{ steps.catalog-tag.outputs.tag }}
       - name: Build Catalog Image
         id: build-catalog-image
         uses: redhat-actions/buildah-build@v2
