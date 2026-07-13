@@ -30,15 +30,18 @@ echo "Found CSV file: $CSV_FILE"
 # Extract the name from the CSV file
 NAME=$(yq e '.metadata.name' $CSV_FILE)
 
-# Split the name by the first period
-IFS='.' read -r OPERATOR_NAME CSV_VERSION <<< "$NAME"
-VERSION=${CSV_VERSION#v}
+# Render the bundle; its package field names the catalog directory (the
+# CSV name prefix is not a reliable package name, e.g. the CSV
+# clusterkubedescheduleroperator.vX belongs to the package
+# cluster-kube-descheduler-operator)
+RENDERED=$(opm render $BUNDLE -o yaml)
+PACKAGE_NAME=$(echo "$RENDERED" | yq e 'select(.schema == "olm.bundle") | .package' -)
 
 # Create the operator catalog directory
-mkdir -p catalog/$OPERATOR_NAME
+mkdir -p catalog/$PACKAGE_NAME
 
-# Render the bundle to a new file in the operator catalog directory
-opm render $BUNDLE -o yaml > catalog/$OPERATOR_NAME/$NAME.yaml
+# Write the rendered bundle to a new file in the operator catalog directory
+echo "$RENDERED" > catalog/$PACKAGE_NAME/$NAME.yaml
 
 # Delete the temporary directory
 rm -rf $TEMP_DIR
