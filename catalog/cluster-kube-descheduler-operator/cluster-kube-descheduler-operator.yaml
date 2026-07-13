@@ -1,0 +1,10 @@
+---
+schema: olm.package
+name: cluster-kube-descheduler-operator
+defaultChannel: alpha
+---
+schema: olm.channel
+package: cluster-kube-descheduler-operator
+name: alpha
+entries:
+  - name: clusterkubedescheduleroperator.v5.4.0-2026-07-13-120312
