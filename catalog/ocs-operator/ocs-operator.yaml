@@ -23,8 +23,9 @@ schema: olm.channel
 package: ocs-operator
 name: alpha
 entries:
-  - name: ocs-operator.v4.21.0-2026-06-15-133815
+  - name: ocs-operator.v4.21.0-2026-09-22-113318
     skips:
       - ocs-operator.v4.20.0-2025-10-24-154513
       - ocs-operator.v4.20.0-2026-02-09-114846
       - ocs-operator.v4.21.0-2026-06-11-151655
+      - ocs-operator.v4.21.0-2026-06-15-133815

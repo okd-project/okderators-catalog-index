@@ -10,8 +10,9 @@ schema: olm.channel
 package: recipe
 name: alpha
 entries:
-  - name: recipe.v4.21.0-2026-06-15-133815
+  - name: recipe.v4.21.0-2026-09-22-113318
     skips:
       - recipe.v4.20.0-2025-10-24-154513
       - recipe.v4.20.0-2026-02-09-114846
       - recipe.v4.21.0-2026-06-11-151655
+      - recipe.v4.21.0-2026-06-15-133815

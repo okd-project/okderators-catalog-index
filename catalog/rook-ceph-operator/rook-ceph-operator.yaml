@@ -10,8 +10,9 @@ schema: olm.channel
 package: rook-ceph-operator
 name: alpha
 entries:
-  - name: rook-ceph-operator.v4.21.0-2026-06-15-133815
+  - name: rook-ceph-operator.v4.21.0-2026-09-22-113318
     skips:
       - rook-ceph-operator.v4.20.0-2025-10-24-154513
       - rook-ceph-operator.v4.20.0-2026-02-09-114846
       - rook-ceph-operator.v4.21.0-2026-06-11-151655
+      - rook-ceph-operator.v4.21.0-2026-06-15-133815
