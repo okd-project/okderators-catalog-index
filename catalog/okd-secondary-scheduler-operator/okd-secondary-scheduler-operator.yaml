@@ -7,4 +7,4 @@ schema: olm.channel
 package: okd-secondary-scheduler-operator
 name: alpha
 entries:
-  - name: okd-secondary-scheduler-operator.v1.5.0-2026-10-09-112048
+  - name: okd-secondary-scheduler-operator.v1.5.0-2026-10-09-115141
