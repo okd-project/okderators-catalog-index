@@ -1,0 +1,10 @@
+---
+schema: olm.package
+name: okd-secondary-scheduler-operator
+defaultChannel: alpha
+---
+schema: olm.channel
+package: okd-secondary-scheduler-operator
+name: alpha
+entries:
+  - name: okd-secondary-scheduler-operator.v1.5.0-2026-10-09-112048
