@@ -7,4 +7,6 @@ schema: olm.channel
 package: cluster-kube-descheduler-operator
 name: alpha
 entries:
-  - name: clusterkubedescheduleroperator.v5.4.0-2026-07-13-120312
+  - name: clusterkubedescheduleroperator.v5.3.0-2026-10-12-113655
+    skips:
+      - clusterkubedescheduleroperator.v5.4.0-2026-07-13-120312
