@@ -10,5 +10,6 @@ schema: olm.channel
 package: ingress-node-firewall
 name: alpha
 entries:
-  - name: ingress-node-firewall.v4.21.0-2026-05-19-130000
-    skipRange: ">=4.11.0 <4.21.0"
+  - name: ingress-node-firewall.v4.22.0-2025-12-14-152353
+    skips:
+      - ingress-node-firewall.v4.21.0-2026-05-19-130000

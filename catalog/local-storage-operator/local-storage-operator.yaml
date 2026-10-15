@@ -35,7 +35,7 @@ schema: olm.channel
 package: local-storage-operator
 name: alpha
 entries:
-  - name: local-storage-operator.v4.21.0-2026-06-19-101555
+  - name: local-storage-operator.v4.22.0-2025-12-14-152353
     skips:
-      - local-storage-operator.v4.20.0-2026-02-06-141621
+      - local-storage-operator.v4.21.0-2026-06-19-101555
       - local-storage-operator.v4.21.0-2026-05-14-110017
