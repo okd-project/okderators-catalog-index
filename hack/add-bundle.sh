@@ -10,38 +10,25 @@ fi
 
 BUNDLE=$1
 
-# Pull bundle and extract it to a temporary directory
-podman pull $BUNDLE
-CONTAINER_ID=$(podman create $BUNDLE)
-TEMP_DIR=$(mktemp -d)
+# Render the bundle. Its name and package field name the catalog file and
+# directory (the CSV name prefix is not a reliable package name, e.g. the CSV
+# clusterkubedescheduleroperator.vX belongs to the package
+# cluster-kube-descheduler-operator). Reading both from the rendered output
+# avoids extracting the CSV with podman, which fails for bundle images built
+# FROM scratch with no CMD ("no command or entrypoint provided").
+RENDERED=$(opm render $BUNDLE -o yaml)
+NAME=$(echo "$RENDERED" | yq e 'select(.schema == "olm.bundle") | .name' -)
+PACKAGE_NAME=$(echo "$RENDERED" | yq e 'select(.schema == "olm.bundle") | .package' -)
 
-podman cp $CONTAINER_ID:/manifests $TEMP_DIR
-podman rm $CONTAINER_ID
-
-# Find the cluster service version YAML file
-CSV_FILE=$(find $TEMP_DIR/manifests -name '*.clusterserviceversion.yaml' | head -n 1)
-if [ -z "$CSV_FILE" ]; then
-    echo "No CSV file found in the bundle."
+if [ -z "$NAME" ] || [ "$NAME" = "null" ] || [ -z "$PACKAGE_NAME" ] || [ "$PACKAGE_NAME" = "null" ]; then
+    echo "Could not determine bundle name/package from opm render output."
     exit 1
 fi
 
-echo "Found CSV file: $CSV_FILE"
-
-# Extract the name from the CSV file
-NAME=$(yq e '.metadata.name' $CSV_FILE)
-
-# Render the bundle; its package field names the catalog directory (the
-# CSV name prefix is not a reliable package name, e.g. the CSV
-# clusterkubedescheduleroperator.vX belongs to the package
-# cluster-kube-descheduler-operator)
-RENDERED=$(opm render $BUNDLE -o yaml)
-PACKAGE_NAME=$(echo "$RENDERED" | yq e 'select(.schema == "olm.bundle") | .package' -)
+echo "Found bundle ${NAME} (package ${PACKAGE_NAME})"
 
 # Create the operator catalog directory
 mkdir -p catalog/$PACKAGE_NAME
 
 # Write the rendered bundle to a new file in the operator catalog directory
 echo "$RENDERED" > catalog/$PACKAGE_NAME/$NAME.yaml
-
-# Delete the temporary directory
-rm -rf $TEMP_DIR
