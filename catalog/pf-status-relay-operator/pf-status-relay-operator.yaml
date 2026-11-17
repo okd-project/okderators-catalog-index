@@ -13,3 +13,5 @@ entries:
   - name: pf-status-relay-operator.v4.22.0-2025-12-14-152353
     skips:
       - pf-status-relay-operator.v4.21.0-2025-12-14-152353
+  - name: pf-status-relay-operator.v5.0.0-2026-11-17-164431
+    replaces: pf-status-relay-operator.v4.22.0-2025-12-14-152353
