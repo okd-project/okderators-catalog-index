@@ -10,3 +10,5 @@ entries:
   - name: lvms-operator.v4.22.0-2025-12-14-152353
     skips:
       - lvms-operator.v4.21.0-2026-05-12-144011
+  - name: lvms-operator.v5.0.0-2026-11-17-164423
+    replaces: lvms-operator.v4.22.0-2025-12-14-152353
