@@ -8,3 +8,5 @@ package: cluster-kube-descheduler-operator
 name: alpha
 entries:
   - name: clusterkubedescheduleroperator.v5.3.0-2026-10-12-113655
+  - name: clusterkubedescheduleroperator.v5.4.0-2026-11-24-165454
+    replaces: clusterkubedescheduleroperator.v5.3.0-2026-10-12-113655
